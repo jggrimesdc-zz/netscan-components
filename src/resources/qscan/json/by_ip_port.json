@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "by_ip_port",
+  "properties": {
+    "headers": {
+      "type": "string"
+    },
+    "ip": {
+      "type": "string"
+    },
+    "port": {
+      "type": "string"
+    },
+    "service": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "ip",
+    "port",
+    "timestamp"
+  ]
+}

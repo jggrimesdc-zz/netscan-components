@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "by_ipaddress",
+  "properties": {
+    "company_name": {
+      "type": "string"
+    },
+    "cpe": {
+      "type": "string"
+    },
+    "domain_name": {
+      "type": "string"
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "ports": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "services": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "ip_address",
+    "timestamp"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "columnDefinitions": [
+    "SCAN_ID text",
+    "USER_ID timestamp",
+    "TIMESTAMP timestamp",
+    "BREACH_RECORD text"
+  ],
+  "name": "osint_scan_breach_data",
+  "primaryKey": [
+    "(SCAN_ID, USER_ID)",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

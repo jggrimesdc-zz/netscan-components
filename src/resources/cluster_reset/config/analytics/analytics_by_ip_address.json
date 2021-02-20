@@ -1,0 +1,23 @@
+{
+  "columnDefinitions": [
+    "IP_ADDRESS text",
+    "TIMESTAMP timestamp",
+    "SCAN_USER_ID text",
+    "DUNS int",
+    "OPEN_PORTS text",
+    "MALWARE_SERVERS text",
+    "FILE_SHARE_SERVERS text",
+    "INSECURE_SYSTEMS text",
+    "POTENTIALLY_EXPLOITED_SYSTEMS text",
+    "HIGH_VALUE_PERSONNEL text",
+    "MANAGEMENT_TEAM text",
+    "DOMAIN text",
+    "SERVICES text"
+  ],
+  "name": "by_ip_address",
+  "primaryKey": [
+    "IP_ADDRESS",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

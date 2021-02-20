@@ -1,0 +1,22 @@
+{
+  "columnDefinitions": [
+    "EVENT_ID text",
+    "TIMESTAMP timestamp",
+    "EVENT_ACTION text",
+    "EVENT_ACTOR text",
+    "RESOURCES text",
+    "DETAIL_TYPE text",
+    "DETAIL text",
+    "EVENT_BUS_NAME text",
+    "ERROR_CODE text",
+    "ERROR_MESSAGE text"
+  ],
+  "name": "event_log",
+  "primaryKey": [
+    "EVENT_ID",
+    "TIMESTAMP",
+    "EVENT_ACTOR",
+    "EVENT_ACTION"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC, EVENT_ACTOR DESC, EVENT_ACTION DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

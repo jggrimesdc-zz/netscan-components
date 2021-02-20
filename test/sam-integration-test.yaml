@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  OSIntServicesAPI:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: services/api/tests/integration/template.yaml
+      Parameters:
+        TestName: RootLambdaHandler
+        TestType: EVENT
+        Test1: services/api/tests/integration/events/event.json
+  OSIntServicesOnboarding:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: services/analytics/tests/integration/template.yaml
+      Parameters:
+        TestName: OnboardingLambdaHandler
+        TestType: EVENT
+        Test1: services/analytics/tests/integration/events/event.json

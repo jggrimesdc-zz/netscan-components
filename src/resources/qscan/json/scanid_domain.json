@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "scanid_domain",
+  "properties": {
+    "certificate_data": {
+      "type": "string"
+    },
+    "domain_name": {
+      "type": "string"
+    },
+    "number_ips": {
+      "type": "number"
+    },
+    "number_std_ports": {
+      "type": "number"
+    },
+    "number_websites": {
+      "type": "number"
+    },
+    "port_cpe": {
+      "type": "string"
+    },
+    "scan_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "valid_websites": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "domain_name",
+    "scan_id",
+    "timestamp"
+  ]
+}

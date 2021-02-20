@@ -1,0 +1,127 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cyberscan-api",
+    "version": "2020-08-21T18:35:12Z"
+  },
+  "paths": {
+    "/cyberscan/scan/schedule/{schedule_id}": {
+      "put": {
+        "tags": [
+          "Update Scheduled Scan"
+        ],
+        "summary": "Updates a recurring scan.",
+        "operationId": "updateScheduledScan",
+        "description": "Updates a recurring scan.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "description": "ScheduleId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "recurrence",
+                  "next_scheduled_run"
+                ],
+                "properties": {
+                  "recurrence": {
+                    "description": "(Optional) Schedule recurrence.",
+                    "type": "string",
+                    "enum": [
+                      "daily",
+                      "weekly",
+                      "monthly",
+                      "quarterly"
+                    ]
+                  },
+                  "next_scheduled_run": {
+                    "description": "(Optional) Start date as an ISO-8601 formatted string.",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The scheduled scan has been successfully updated."
+          },
+          "400": {
+            "description": "If the customer account or user id is not formatted properly according to the specified pattern, or if either are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "array",
+                      "description": "Details of the error.",
+                      "items": {
+                        "type": "string",
+                        "description": "Erroneous fields in the request."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the customer account and user id cannot be found in WCaaS, a not found error will be returned.  To fix this, onboard the client authentication information to WCaaS.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "object",
+                      "description": "Details of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

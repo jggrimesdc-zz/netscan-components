@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cyberscan-api",
+    "version": "2020-08-21T18:35:12Z"
+  },
+  "paths": {
+    "/cyberscan/mgmt/client/onboard/status": {
+      "get": {
+        "tags": [
+          "Management"
+        ],
+        "summary": "Get client onboarding status to Scan Application",
+        "operationId": "getClient",
+        "description": "Returns the onboarding status of a client.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If the client is onboarded, the response contains a \"scanUserId\" field.  This field is formatted as a UUID and will be used to identify records in WCaaS corresponding to this user's activity."
+          },
+          "400": {
+            "description": "If the customer account or user id is not formatted properly according to the specified pattern, or if either are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "array",
+                      "description": "Details of the error.",
+                      "items": {
+                        "type": "string",
+                        "description": "Erroneous fields in the request."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If the customer account and user id cannot be found in WCaaS, a not found error will be returned.  To fix this, onboard the client authentication information to WCaaS.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "object",
+                      "description": "Intentionally left blank."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

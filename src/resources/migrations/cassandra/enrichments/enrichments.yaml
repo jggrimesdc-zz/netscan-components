@@ -1,0 +1,2 @@
+keyspace: enrichments
+migrations_path: .

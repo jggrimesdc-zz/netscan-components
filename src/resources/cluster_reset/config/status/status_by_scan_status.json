@@ -1,0 +1,17 @@
+{
+  "columnDefinitions": [
+    "SCAN_STATUS text",
+    "TIMESTAMP timestamp",
+    "SCAN_USER_ID text",
+    "SCAN_ID text",
+    "COMPANY_NAME text",
+    "DUNS text"
+  ],
+  "name": "by_scan_status",
+  "primaryKey": [
+    "(SCAN_STATUS, SCAN_USER_ID)",
+    "TIMESTAMP",
+    "SCAN_ID"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC, SCAN_ID DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

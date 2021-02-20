@@ -1,0 +1,17 @@
+{
+  "columnDefinitions": [
+    "SERVICE int",
+    "TIMESTAMP timestamp",
+    "USER_ID text",
+    "DUNS int",
+    "IP_ADDRESS text",
+    "DOMAINS text",
+    "PORT text"
+  ],
+  "name": "by_service",
+  "primaryKey": [
+    "SERVICE",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

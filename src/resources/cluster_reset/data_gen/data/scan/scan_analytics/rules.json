@@ -1,0 +1,11 @@
+{
+  "rules": [
+    [
+      "\\buser_id\\b",
+      "random_number",
+      {
+        "digits": 18
+      }
+    ]
+  ]
+}

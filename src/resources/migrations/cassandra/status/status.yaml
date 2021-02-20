@@ -1,0 +1,2 @@
+keyspace: status
+migrations_path: .

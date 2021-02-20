@@ -1,0 +1,17 @@
+{
+  "columnDefinitions": [
+    "PORT text",
+    "TIMESTAMP timestamp",
+    "SCAN_USER_ID text",
+    "DUNS text",
+    "IP_ADDRESS text",
+    "DOMAINS text",
+    "SERVICE int"
+  ],
+  "name": "by_port",
+  "primaryKey": [
+    "PORT",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

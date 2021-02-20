@@ -1,0 +1,15 @@
+{
+  "columnDefinitions": [
+    "TASK_NAME_CONSUMER text",
+    "TASK_NAME_PUBLISHER text",
+    "TIMESTAMP timestamp",
+    "PAYLOAD text"
+  ],
+  "name": "event_log",
+  "primaryKey": [
+    "TIMESTAMP",
+    "TASK_NAME_PUBLISHER",
+    "TASK_NAME_CONSUMER"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TASK_NAME_PUBLISHER DESC, TASK_NAME_CONSUMER DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

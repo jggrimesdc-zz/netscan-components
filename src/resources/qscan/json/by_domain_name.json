@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "by_domain_name",
+  "properties": {
+    "axfr": {
+      "type": "boolean"
+    },
+    "dmarc": {
+      "type": "boolean"
+    },
+    "domain_name": {
+      "type": "string"
+    },
+    "ip_addresses": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "ports": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "number"
+      }
+    },
+    "spf": {
+      "type": "boolean"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "domain_name",
+    "timestamp"
+  ]
+}

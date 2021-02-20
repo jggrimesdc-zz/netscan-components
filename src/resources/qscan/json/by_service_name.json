@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "by_service_name",
+  "properties": {
+    "company_name": {
+      "type": "string"
+    },
+    "ports": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "service": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "service",
+    "timestamp"
+  ]
+}

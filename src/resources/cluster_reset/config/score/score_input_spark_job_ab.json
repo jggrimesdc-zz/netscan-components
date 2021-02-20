@@ -1,0 +1,26 @@
+{
+  "columnDefinitions": [
+    "SCAN_ID text",
+    "USER_ID text",
+    "TIMESTAMP timestamp",
+    "SPF_TOTAL int",
+    "SPF_SUBSET int",
+    "DMARC_TOTAL int",
+    "DMARC_SUBSET int",
+    "BROWSERV_TOTAL int",
+    "BROWSERV_SUBSET int",
+    "HTTPS_TOTAL int",
+    "HTTPS_SUBSET int",
+    "OP_TOTAL int",
+    "OP_SUBSET int",
+    "WAH_TOTAL int",
+    "WAH_SUBSET int",
+    "S3_RAW_DUMP_URL text"
+  ],
+  "name": "score_input_spark_job_ab",
+  "primaryKey": [
+    "(SCAN_ID, USER_ID)",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

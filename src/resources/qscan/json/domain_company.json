@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "domain_company",
+  "properties": {
+    "company_name": {
+      "type": "string"
+    },
+    "domain_name": {
+      "type": "string"
+    },
+    "port": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "number"
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "company_name",
+    "domain_name",
+    "timestamp"
+  ]
+}

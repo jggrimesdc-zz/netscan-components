@@ -1,0 +1,2 @@
+keyspace: analytics
+migrations_path: .

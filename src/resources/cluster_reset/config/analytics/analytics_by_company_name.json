@@ -1,0 +1,22 @@
+{
+  "columnDefinitions": [
+    "COMPANY_NAME text",
+    "TIMESTAMP timestamp",
+    "SCAN_USER_ID text",
+    "DUNS int",
+    "EMAIL_ADDRESS text",
+    "COMPANY_INFO text",
+    "IP_ADDRESS text",
+    "PUBLIC_DOC text",
+    "PUBLIC_METADATA text",
+    "PHYS_OP_LOC text",
+    "DISCOVERABLE_CODE_INFO text",
+    "PERSONNEL_CODE_REPO text"
+  ],
+  "name": "by_company_name",
+  "primaryKey": [
+    "COMPANY_NAME",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

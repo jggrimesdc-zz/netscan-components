@@ -1,0 +1,4274 @@
+---
+Resources:
+  cyberscanapiroothandlerServiceRole84273C7E:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root-handler/ServiceRole/Resource
+  cyberscanapiroothandlerF288CD4D:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../../src/scan/lambdas/api
+      Handler: root_handler.handle
+      Role:
+        Fn::GetAtt:
+          - cyberscanapiroothandlerServiceRole84273C7E
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+    DependsOn:
+      - cyberscanapiroothandlerServiceRole84273C7E
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root-handler/Resource
+      aws:asset:path: asset.70f2cea1585209c425ce9779a19b43aaef7b36583411c592d4145d9db9ba64b3
+      aws:asset:property: Code
+  cyberscanapiroot4FE8D352:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Description: "\n        This API facilitates client analytics to the OSInt Application.\n
+        \   "
+      Name: cyberscan-api-root
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Resource
+  cyberscanapirootDeploymentC28B42A076707206dfb92ccfceaf9738f2562e4b:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      Description: Automatically created by the RestApi construct
+    DependsOn:
+      - cyberscanapirootcyberscananalyticscompanyidcompanyidGETE67CD729
+      - cyberscanapirootcyberscananalyticscompanyidcompanyid5F77D2E9
+      - cyberscanapirootcyberscananalyticscompanyidDE36DCBE
+      - cyberscanapirootcyberscananalyticscompanynamecompanynameGET5BFAF589
+      - cyberscanapirootcyberscananalyticscompanynamecompanyname104327A7
+      - cyberscanapirootcyberscananalyticscompanyname002C1F63
+      - cyberscanapirootcyberscananalyticsdomaindomainGET3F70147B
+      - cyberscanapirootcyberscananalyticsdomaindomainC04E4868
+      - cyberscanapirootcyberscananalyticsdomain36C09792
+      - cyberscanapirootcyberscananalyticsdunsdunsGET882BCC07
+      - cyberscanapirootcyberscananalyticsdunsdunsE113344B
+      - cyberscanapirootcyberscananalyticsdunsF983CB93
+      - cyberscanapirootcyberscananalyticsipaddressipaddressGET8C723124
+      - cyberscanapirootcyberscananalyticsipaddressipaddress724FF370
+      - cyberscanapirootcyberscananalyticsipaddress8C97279D
+      - cyberscanapirootcyberscananalyticsportportGETF3158CC8
+      - cyberscanapirootcyberscananalyticsportport1399F955
+      - cyberscanapirootcyberscananalyticsportB6B16DAD
+      - cyberscanapirootcyberscananalyticsA0E4D2DA
+      - cyberscanapirootcyberscananalyticsserviceserviceGET544D9953
+      - cyberscanapirootcyberscananalyticsserviceservice7CDE8A5A
+      - cyberscanapirootcyberscananalyticsserviceA69FEF16
+      - cyberscanapirootcyberscandqmeventlogeventactoreventactionGET66101129
+      - cyberscanapirootcyberscandqmeventlogeventactoreventaction08677DB6
+      - cyberscanapirootcyberscandqmeventlogeventactor58CF5189
+      - cyberscanapirootcyberscandqmeventlogE2169F83
+      - cyberscanapirootcyberscandqm947B029A
+      - cyberscanapirootcyberscanmgmtclientonboardGET647F558E
+      - cyberscanapirootcyberscanmgmtclientonboardECB13D8F
+      - cyberscanapirootcyberscanmgmtclientonboardstatusGETBAD32E18
+      - cyberscanapirootcyberscanmgmtclientonboardstatus481ECD33
+      - cyberscanapirootcyberscanmgmtclient64110747
+      - cyberscanapirootcyberscanmgmt4ACD22B4
+      - cyberscanapirootcyberscanA76AD328
+      - cyberscanapirootcyberscanpollPOSTD2F84DD3
+      - cyberscanapirootcyberscanpollB54AB84D
+      - cyberscanapirootcyberscanreportscanidfilenamePOSTDDEB3EC1
+      - cyberscanapirootcyberscanreportscanidfilenameC947B21B
+      - cyberscanapirootcyberscanreportscanidHEAD2B265027
+      - cyberscanapirootcyberscanreportscanidEED8541D
+      - cyberscanapirootcyberscanreport9421B46D
+      - cyberscanapirootcyberscan10EE746D
+      - cyberscanapirootcyberscanretryscanidPOST507D13C7
+      - cyberscanapirootcyberscanretryscanid01B7E8C4
+      - cyberscanapirootcyberscanretryFB2FB073
+      - cyberscanapirootcyberscansubmitPOSTD01BD36D
+      - cyberscanapirootcyberscansubmitFD10126C
+      - cyberscanapirootcyberscanstatuscompanynamecompanynameGET41E01D2C
+      - cyberscanapirootcyberscanstatuscompanynamecompanyname526EB778
+      - cyberscanapirootcyberscanstatuscompanyname8B300E57
+      - cyberscanapirootcyberscanstatusdaterangedaterangeGETFCAEBA6D
+      - cyberscanapirootcyberscanstatusdaterangedaterange65A40843
+      - cyberscanapirootcyberscanstatusdaterangeFAB12657
+      - cyberscanapirootcyberscanstatusdomaindomainGET51A1ECC7
+      - cyberscanapirootcyberscanstatusdomaindomain7531E549
+      - cyberscanapirootcyberscanstatusdomain9C528E6E
+      - cyberscanapirootcyberscanstatusdunsdunsGET09F51EC0
+      - cyberscanapirootcyberscanstatusdunsdunsBB9B9736
+      - cyberscanapirootcyberscanstatusduns16356AF2
+      - cyberscanapirootcyberscanstatus9E959F84
+      - cyberscanapirootcyberscanstatusscanidscanidGET30C9A2F6
+      - cyberscanapirootcyberscanstatusscanidscanid51B7FC65
+      - cyberscanapirootcyberscanstatusscanid579EBC86
+      - cyberscanapirootcyberscanstatusstatusGET74F5CC42
+      - cyberscanapirootcyberscanstatusstatusBD87B947
+      - cyberscanapirootcyberscanstatus6F32966B
+      - cyberscanapirootsrcPOSTA9C52474
+      - cyberscanapirootsrc4B0D3303
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Deployment/Resource
+  cyberscanapirootDeploymentStageprodCC695A56:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      DeploymentId:
+        Ref: cyberscanapirootDeploymentC28B42A076707206dfb92ccfceaf9738f2562e4b
+      StageName: prod
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/DeploymentStage.prod/Resource
+  cyberscanapirootCloudWatchRoleF050029B:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/CloudWatchRole/Resource
+  cyberscanapirootAccountB4DAB1E3:
+    Type: AWS::ApiGateway::Account
+    Properties:
+      CloudWatchRoleArn:
+        Fn::GetAtt:
+          - cyberscanapirootCloudWatchRoleF050029B
+          - Arn
+    DependsOn:
+      - cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Account
+  cyberscanapirootcyberscanA76AD328:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - cyberscanapiroot4FE8D352
+          - RootResourceId
+      PathPart: cyberscan
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/Resource
+  cyberscanapirootcyberscanmgmt4ACD22B4:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanA76AD328
+      PathPart: mgmt
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/Resource
+  cyberscanapirootcyberscanmgmtclient64110747:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanmgmt4ACD22B4
+      PathPart: client
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/Resource
+  cyberscanapirootcyberscanmgmtclientonboardECB13D8F:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanmgmtclient64110747
+      PathPart: onboard
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/Resource
+  ? cyberscanapirootcyberscanmgmtclientonboardGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanmgmtclientonboard06610900
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - cyberscanapiMgmtOnboardhandler40DD12C7
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/mgmt/client/onboard"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.mgmt.client.onboard
+  ? cyberscanapirootcyberscanmgmtclientonboardGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanmgmtclientonboard544D5DB6
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - cyberscanapiMgmtOnboardhandler40DD12C7
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/mgmt/client/onboard"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.mgmt.client.onboard
+  cyberscanapirootcyberscanmgmtclientonboardGET647F558E:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanmgmtclientonboardECB13D8F
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - cyberscanapiMgmtOnboardhandler40DD12C7
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/GET/Resource
+  cyberscanapirootcyberscanmgmtclientonboardstatus481ECD33:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanmgmtclientonboardECB13D8F
+      PathPart: status
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/status/Resource
+  ? cyberscanapirootcyberscanmgmtclientonboardstatusGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanmgmtclientonboardstatusE9CAB59A
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - cyberscanapiMgmtOnboardStatushandler7D61D13E
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/mgmt/client/onboard/status"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/status/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.mgmt.client.onboard.status
+  ? cyberscanapirootcyberscanmgmtclientonboardstatusGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanmgmtclientonboardstatus4B254C62
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - cyberscanapiMgmtOnboardStatushandler7D61D13E
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/mgmt/client/onboard/status"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/status/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.mgmt.client.onboard.status
+  cyberscanapirootcyberscanmgmtclientonboardstatusGETBAD32E18:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanmgmtclientonboardstatus481ECD33
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - cyberscanapiMgmtOnboardStatushandler7D61D13E
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/mgmt/client/onboard/status/GET/Resource
+  cyberscanapirootcyberscan10EE746D:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanA76AD328
+      PathPart: scan
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/Resource
+  cyberscanapirootcyberscansubmitFD10126C:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscan10EE746D
+      PathPart: submit
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/submit/Resource
+  cyberscanapirootcyberscansubmitPOSTApiPermissioncyberscanapicyberscanapirootC6689D0BPOSTcyberscanscansubmit1577A687:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - cyberscanapiScanSubmithandler9F83A1FB
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/"
+            - Ref: cyberscanapirootDeploymentStageprodCC695A56
+            - "/POST/cyberscan/scan/submit"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/submit/POST/ApiPermission.cyberscanapicyberscanapirootC6689D0B.POST..cyberscan.scan.submit
+  cyberscanapirootcyberscansubmitPOSTApiPermissionTestcyberscanapicyberscanapirootC6689D0BPOSTcyberscanscansubmit80E95AC1:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - cyberscanapiScanSubmithandler9F83A1FB
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/test-invoke-stage/POST/cyberscan/scan/submit"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/submit/POST/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.POST..cyberscan.scan.submit
+  cyberscanapirootcyberscansubmitPOSTD01BD36D:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: POST
+      ResourceId:
+        Ref: cyberscanapirootcyberscansubmitFD10126C
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - cyberscanapiScanSubmithandler9F83A1FB
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/submit/POST/Resource
+  cyberscanapirootcyberscanpollB54AB84D:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscan10EE746D
+      PathPart: poll
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/poll/Resource
+  cyberscanapirootcyberscanpollPOSTApiPermissioncyberscanapicyberscanapirootC6689D0BPOSTcyberscanscanpoll5FF9AB01:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - cyberscanapiScanPollhandler3EE57602
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/"
+            - Ref: cyberscanapirootDeploymentStageprodCC695A56
+            - "/POST/cyberscan/scan/poll"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/poll/POST/ApiPermission.cyberscanapicyberscanapirootC6689D0B.POST..cyberscan.scan.poll
+  cyberscanapirootcyberscanpollPOSTApiPermissionTestcyberscanapicyberscanapirootC6689D0BPOSTcyberscanscanpoll3F3F48AD:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - cyberscanapiScanPollhandler3EE57602
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/test-invoke-stage/POST/cyberscan/scan/poll"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/poll/POST/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.POST..cyberscan.scan.poll
+  cyberscanapirootcyberscanpollPOSTD2F84DD3:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: POST
+      ResourceId:
+        Ref: cyberscanapirootcyberscanpollB54AB84D
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      ApiKeyRequired: true
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - cyberscanapiScanPollhandler3EE57602
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/poll/POST/Resource
+  cyberscanapirootcyberscanretryFB2FB073:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscan10EE746D
+      PathPart: retry
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/retry/Resource
+  cyberscanapirootcyberscanretryscanid01B7E8C4:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanretryFB2FB073
+      PathPart: "{scan_id}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/retry/{scan_id}/Resource
+  cyberscanapirootcyberscanretryscanidPOSTApiPermissioncyberscanapicyberscanapirootC6689D0BPOSTcyberscanscanretryscanid06F7C2C5:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - cyberscanapiScanRetryhandler0C5DC1E4
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/"
+            - Ref: cyberscanapirootDeploymentStageprodCC695A56
+            - "/POST/cyberscan/scan/retry/{scan_id}"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/retry/{scan_id}/POST/ApiPermission.cyberscanapicyberscanapirootC6689D0B.POST..cyberscan.scan.retry.{scan_id}
+  ? cyberscanapirootcyberscanretryscanidPOSTApiPermissionTestcyberscanapicyberscanapirootC6689D0BPOSTcyberscanscanretryscanid5FEA82BB
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - cyberscanapiScanRetryhandler0C5DC1E4
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/POST/cyberscan/scan/retry/{scan_id}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/retry/{scan_id}/POST/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.POST..cyberscan.scan.retry.{scan_id}
+  cyberscanapirootcyberscanretryscanidPOST507D13C7:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: POST
+      ResourceId:
+        Ref: cyberscanapirootcyberscanretryscanid01B7E8C4
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      ApiKeyRequired: true
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - cyberscanapiScanRetryhandler0C5DC1E4
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/retry/{scan_id}/POST/Resource
+  cyberscanapirootcyberscanreport9421B46D:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscan10EE746D
+      PathPart: report
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/report/Resource
+  cyberscanapirootcyberscanreportscanidEED8541D:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanreport9421B46D
+      PathPart: "{scan_id}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/report/{scan_id}/Resource
+  cyberscanapirootcyberscanreportscanidfilenameC947B21B:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanreportscanidEED8541D
+      PathPart: "{file_name}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/report/{scan_id}/{file_name}/Resource
+  cyberscanapirootcyberscanreportscanidfilenamePOSTDDEB3EC1:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: POST
+      ResourceId:
+        Ref: cyberscanapirootcyberscanreportscanidfilenameC947B21B
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        Credentials:
+          Fn::GetAtt:
+            - cyberscanapiS3PutRole9612E4F4
+            - Arn
+        IntegrationHttpMethod: PUT
+        Type: AWS
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":s3:path/cyber-scan-dev-qos/{folder}/{file}"
+      MethodResponses:
+        - StatusCode: '200'
+      RequestParameters:
+        method.request.path.scan_id: true
+        method.request.path.file_name: true
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/report/{scan_id}/{file_name}/POST/Resource
+  cyberscanapirootcyberscanreportscanidHEAD2B265027:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: HEAD
+      ResourceId:
+        Ref: cyberscanapirootcyberscanreportscanidEED8541D
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        Credentials:
+          Fn::GetAtt:
+            - cyberscanapiS3PutRole9612E4F4
+            - Arn
+        IntegrationHttpMethod: GET
+        Type: AWS
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":s3:path/cyber-scan-dev-qos/{folder}/report/report.json"
+      MethodResponses:
+        - StatusCode: '200'
+      RequestParameters:
+        method.request.path.scan_id: true
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/scan/report/{scan_id}/HEAD/Resource
+  cyberscanapirootcyberscanstatus9E959F84:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanA76AD328
+      PathPart: status
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/Resource
+  cyberscanapirootcyberscanstatusscanid579EBC86:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatus9E959F84
+      PathPart: scanid
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/scanid/Resource
+  cyberscanapirootcyberscanstatusscanidscanid51B7FC65:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatusscanid579EBC86
+      PathPart: "{scan_id}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/scanid/{scan_id}/Resource
+  ? cyberscanapirootcyberscanstatusscanidscanidGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanstatusscanidscanid82C0A0F6
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusScanIdhandlerE2A0F523
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/status/scanid/{scan_id}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/scanid/{scan_id}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.scanid.{scan_id}
+  ? cyberscanapirootcyberscanstatusscanidscanidGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanstatusscanidscanid5C3D2333
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusScanIdhandlerE2A0F523
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/status/scanid/{scan_id}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/scanid/{scan_id}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.scanid.{scan_id}
+  cyberscanapirootcyberscanstatusscanidscanidGET30C9A2F6:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanstatusscanidscanid51B7FC65
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - StatusScanIdhandlerE2A0F523
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/scanid/{scan_id}/GET/Resource
+  cyberscanapirootcyberscanstatuscompanyname8B300E57:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatus9E959F84
+      PathPart: companyname
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/companyname/Resource
+  cyberscanapirootcyberscanstatuscompanynamecompanyname526EB778:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatuscompanyname8B300E57
+      PathPart: "{company_name}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/companyname/{company_name}/Resource
+  ? cyberscanapirootcyberscanstatuscompanynamecompanynameGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanstatuscompanynamecompanyname5F741042
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusCompanyNamehandler23DA8152
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/status/companyname/{company_name}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/companyname/{company_name}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.companyname.{company_name}
+  ? cyberscanapirootcyberscanstatuscompanynamecompanynameGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanstatuscompanynamecompanyname16DD8723
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusCompanyNamehandler23DA8152
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/status/companyname/{company_name}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/companyname/{company_name}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.companyname.{company_name}
+  cyberscanapirootcyberscanstatuscompanynamecompanynameGET41E01D2C:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanstatuscompanynamecompanyname526EB778
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - StatusCompanyNamehandler23DA8152
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/companyname/{company_name}/GET/Resource
+  cyberscanapirootcyberscanstatusdaterangeFAB12657:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatus9E959F84
+      PathPart: daterange
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/daterange/Resource
+  cyberscanapirootcyberscanstatusdaterangedaterange65A40843:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatusdaterangeFAB12657
+      PathPart: "{date_range}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/daterange/{date_range}/Resource
+  ? cyberscanapirootcyberscanstatusdaterangedaterangeGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanstatusdaterangedaterangeF76F3953
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusDateRangehandler3412FE17
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/status/daterange/{date_range}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/daterange/{date_range}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.daterange.{date_range}
+  ? cyberscanapirootcyberscanstatusdaterangedaterangeGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanstatusdaterangedaterange85E35212
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusDateRangehandler3412FE17
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/status/daterange/{date_range}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/daterange/{date_range}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.daterange.{date_range}
+  cyberscanapirootcyberscanstatusdaterangedaterangeGETFCAEBA6D:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanstatusdaterangedaterange65A40843
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - StatusDateRangehandler3412FE17
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/daterange/{date_range}/GET/Resource
+  cyberscanapirootcyberscanstatus6F32966B:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatus9E959F84
+      PathPart: status
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/status/Resource
+  cyberscanapirootcyberscanstatusstatusBD87B947:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatus6F32966B
+      PathPart: "{status}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/status/{status}/Resource
+  cyberscanapirootcyberscanstatusstatusGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanstatusstatusstatus276C1793:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - StatusStatushandler1D05E7C9
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/"
+            - Ref: cyberscanapirootDeploymentStageprodCC695A56
+            - "/GET/cyberscan/status/status/{status}"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/status/{status}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.status.{status}
+  ? cyberscanapirootcyberscanstatusstatusGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanstatusstatusstatus8725C16F
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusStatushandler1D05E7C9
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/status/status/{status}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/status/{status}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.status.{status}
+  cyberscanapirootcyberscanstatusstatusGET74F5CC42:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanstatusstatusBD87B947
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - StatusStatushandler1D05E7C9
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/status/{status}/GET/Resource
+  cyberscanapirootcyberscanstatusdomain9C528E6E:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatus9E959F84
+      PathPart: domain
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/domain/Resource
+  cyberscanapirootcyberscanstatusdomaindomain7531E549:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatusdomain9C528E6E
+      PathPart: "{domain}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/domain/{domain}/Resource
+  ? cyberscanapirootcyberscanstatusdomaindomainGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanstatusdomaindomainEB28B316
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusDomainhandler53FBB367
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/status/domain/{domain}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/domain/{domain}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.domain.{domain}
+  ? cyberscanapirootcyberscanstatusdomaindomainGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanstatusdomaindomain288147B9
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusDomainhandler53FBB367
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/status/domain/{domain}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/domain/{domain}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.domain.{domain}
+  cyberscanapirootcyberscanstatusdomaindomainGET51A1ECC7:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanstatusdomaindomain7531E549
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - StatusDomainhandler53FBB367
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/domain/{domain}/GET/Resource
+  cyberscanapirootcyberscanstatusduns16356AF2:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatus9E959F84
+      PathPart: duns
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/duns/Resource
+  cyberscanapirootcyberscanstatusdunsdunsBB9B9736:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanstatusduns16356AF2
+      PathPart: "{duns}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/duns/{duns}/Resource
+  cyberscanapirootcyberscanstatusdunsdunsGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscanstatusdunsduns4F48D016:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - StatusDunshandler5CBEF4B9
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/"
+            - Ref: cyberscanapirootDeploymentStageprodCC695A56
+            - "/GET/cyberscan/status/duns/{duns}"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/duns/{duns}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.duns.{duns}
+  ? cyberscanapirootcyberscanstatusdunsdunsGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscanstatusdunsduns69D310A5
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - StatusDunshandler5CBEF4B9
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/status/duns/{duns}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/duns/{duns}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.status.duns.{duns}
+  cyberscanapirootcyberscanstatusdunsdunsGET09F51EC0:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscanstatusdunsdunsBB9B9736
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - StatusDunshandler5CBEF4B9
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/status/duns/{duns}/GET/Resource
+  cyberscanapirootcyberscananalyticsA0E4D2DA:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanA76AD328
+      PathPart: analytics
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/Resource
+  cyberscanapirootcyberscananalyticscompanyidDE36DCBE:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsA0E4D2DA
+      PathPart: companyid
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyid/Resource
+  cyberscanapirootcyberscananalyticscompanyidcompanyid5F77D2E9:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticscompanyidDE36DCBE
+      PathPart: "{company_id}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyid/{company_id}/Resource
+  ? cyberscanapirootcyberscananalyticscompanyidcompanyidGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscananalyticscompanyidcompanyidE141B9DF
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsCompanyIdhandlerBCA50E79
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/analytics/companyid/{company_id}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyid/{company_id}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.companyid.{company_id}
+  ? cyberscanapirootcyberscananalyticscompanyidcompanyidGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscananalyticscompanyidcompanyidA62D6F58
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsCompanyIdhandlerBCA50E79
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/analytics/companyid/{company_id}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyid/{company_id}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.companyid.{company_id}
+  cyberscanapirootcyberscananalyticscompanyidcompanyidGETE67CD729:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscananalyticscompanyidcompanyid5F77D2E9
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - AnalyticsCompanyIdhandlerBCA50E79
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyid/{company_id}/GET/Resource
+  cyberscanapirootcyberscananalyticscompanyname002C1F63:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsA0E4D2DA
+      PathPart: companyname
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyname/Resource
+  cyberscanapirootcyberscananalyticscompanynamecompanyname104327A7:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticscompanyname002C1F63
+      PathPart: "{company_name}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyname/{company_name}/Resource
+  ? cyberscanapirootcyberscananalyticscompanynamecompanynameGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscananalyticscompanynamecompanyname0F264A2D
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsCompanyNamehandlerCF3121EE
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/analytics/companyname/{company_name}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyname/{company_name}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.companyname.{company_name}
+  ? cyberscanapirootcyberscananalyticscompanynamecompanynameGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscananalyticscompanynamecompanyname5CAFD782
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsCompanyNamehandlerCF3121EE
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/analytics/companyname/{company_name}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyname/{company_name}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.companyname.{company_name}
+  cyberscanapirootcyberscananalyticscompanynamecompanynameGET5BFAF589:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscananalyticscompanynamecompanyname104327A7
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - AnalyticsCompanyNamehandlerCF3121EE
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/companyname/{company_name}/GET/Resource
+  cyberscanapirootcyberscananalyticsdomain36C09792:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsA0E4D2DA
+      PathPart: domain
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/domain/Resource
+  cyberscanapirootcyberscananalyticsdomaindomainC04E4868:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsdomain36C09792
+      PathPart: "{domain}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/domain/{domain}/Resource
+  ? cyberscanapirootcyberscananalyticsdomaindomainGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsdomaindomainFE260C49
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsDomainhandlerDE866215
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/analytics/domain/{domain}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/domain/{domain}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.domain.{domain}
+  ? cyberscanapirootcyberscananalyticsdomaindomainGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsdomaindomainE0E107F0
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsDomainhandlerDE866215
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/analytics/domain/{domain}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/domain/{domain}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.domain.{domain}
+  cyberscanapirootcyberscananalyticsdomaindomainGET3F70147B:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscananalyticsdomaindomainC04E4868
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - AnalyticsDomainhandlerDE866215
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/domain/{domain}/GET/Resource
+  cyberscanapirootcyberscananalyticsdunsF983CB93:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsA0E4D2DA
+      PathPart: duns
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/duns/Resource
+  cyberscanapirootcyberscananalyticsdunsdunsE113344B:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsdunsF983CB93
+      PathPart: "{duns}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/duns/{duns}/Resource
+  ? cyberscanapirootcyberscananalyticsdunsdunsGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsdunsduns268FE19E
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsDUNShandlerAC06B954
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/analytics/duns/{duns}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/duns/{duns}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.duns.{duns}
+  ? cyberscanapirootcyberscananalyticsdunsdunsGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsdunsdunsC7D59588
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsDUNShandlerAC06B954
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/analytics/duns/{duns}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/duns/{duns}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.duns.{duns}
+  cyberscanapirootcyberscananalyticsdunsdunsGET882BCC07:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscananalyticsdunsdunsE113344B
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - AnalyticsDUNShandlerAC06B954
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/duns/{duns}/GET/Resource
+  cyberscanapirootcyberscananalyticsipaddress8C97279D:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsA0E4D2DA
+      PathPart: ipaddress
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/ipaddress/Resource
+  cyberscanapirootcyberscananalyticsipaddressipaddress724FF370:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsipaddress8C97279D
+      PathPart: "{ipaddress}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/ipaddress/{ipaddress}/Resource
+  ? cyberscanapirootcyberscananalyticsipaddressipaddressGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsipaddressipaddress7E217274
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsIPAddresshandler1F6C2332
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/analytics/ipaddress/{ipaddress}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/ipaddress/{ipaddress}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.ipaddress.{ipaddress}
+  ? cyberscanapirootcyberscananalyticsipaddressipaddressGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsipaddressipaddress0818E400
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsIPAddresshandler1F6C2332
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/analytics/ipaddress/{ipaddress}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/ipaddress/{ipaddress}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.ipaddress.{ipaddress}
+  cyberscanapirootcyberscananalyticsipaddressipaddressGET8C723124:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscananalyticsipaddressipaddress724FF370
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - AnalyticsIPAddresshandler1F6C2332
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/ipaddress/{ipaddress}/GET/Resource
+  cyberscanapirootcyberscananalyticsportB6B16DAD:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsA0E4D2DA
+      PathPart: port
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/port/Resource
+  cyberscanapirootcyberscananalyticsportport1399F955:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsportB6B16DAD
+      PathPart: "{port}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/port/{port}/Resource
+  ? cyberscanapirootcyberscananalyticsportportGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsportport03558FDA
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsPorthandler48EBF764
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/analytics/port/{port}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/port/{port}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.port.{port}
+  ? cyberscanapirootcyberscananalyticsportportGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsportport46ECB0CB
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsPorthandler48EBF764
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/analytics/port/{port}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/port/{port}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.port.{port}
+  cyberscanapirootcyberscananalyticsportportGETF3158CC8:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscananalyticsportport1399F955
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - AnalyticsPorthandler48EBF764
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/port/{port}/GET/Resource
+  cyberscanapirootcyberscananalyticsserviceA69FEF16:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsA0E4D2DA
+      PathPart: service
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/service/Resource
+  cyberscanapirootcyberscananalyticsserviceservice7CDE8A5A:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscananalyticsserviceA69FEF16
+      PathPart: "{service}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/service/{service}/Resource
+  ? cyberscanapirootcyberscananalyticsserviceserviceGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsserviceservice577AFE3A
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsServicehandler2ED4EC89
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/analytics/service/{service}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/service/{service}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.service.{service}
+  ? cyberscanapirootcyberscananalyticsserviceserviceGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscananalyticsserviceserviceE8A03834
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - AnalyticsServicehandler2ED4EC89
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/analytics/service/{service}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/service/{service}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.analytics.service.{service}
+  cyberscanapirootcyberscananalyticsserviceserviceGET544D9953:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscananalyticsserviceservice7CDE8A5A
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - AnalyticsServicehandler2ED4EC89
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/analytics/service/{service}/GET/Resource
+  cyberscanapirootcyberscandqm947B029A:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscanA76AD328
+      PathPart: dqm
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/dqm/Resource
+  cyberscanapirootcyberscandqmeventlogE2169F83:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscandqm947B029A
+      PathPart: eventlog
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/dqm/eventlog/Resource
+  cyberscanapirootcyberscandqmeventlogeventactor58CF5189:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscandqmeventlogE2169F83
+      PathPart: "{event_actor}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/dqm/eventlog/{event_actor}/Resource
+  cyberscanapirootcyberscandqmeventlogeventactoreventaction08677DB6:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Ref: cyberscanapirootcyberscandqmeventlogeventactor58CF5189
+      PathPart: "{event_action}"
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/dqm/eventlog/{event_actor}/{event_action}/Resource
+  ? cyberscanapirootcyberscandqmeventlogeventactoreventactionGETApiPermissioncyberscanapicyberscanapirootC6689D0BGETcyberscandqmeventlogeventactoreventaction3900F690
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - DQMEventLoghandlerCEB8075E
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/"
+                - Ref: cyberscanapirootDeploymentStageprodCC695A56
+                - "/GET/cyberscan/dqm/eventlog/{event_actor}/{event_action}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/dqm/eventlog/{event_actor}/{event_action}/GET/ApiPermission.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.dqm.eventlog.{event_actor}.{event_action}
+  ? cyberscanapirootcyberscandqmeventlogeventactoreventactionGETApiPermissionTestcyberscanapicyberscanapirootC6689D0BGETcyberscandqmeventlogeventactoreventaction217786B7
+    : Type: AWS::Lambda::Permission
+        Properties:
+          Action: lambda:InvokeFunction
+          FunctionName:
+            Fn::GetAtt:
+              - DQMEventLoghandlerCEB8075E
+              - Arn
+          Principal: apigateway.amazonaws.com
+          SourceArn:
+            Fn::Join:
+              - ''
+              - - 'arn:'
+                - Ref: AWS::Partition
+                - ":execute-api:"
+                - Ref: AWS::Region
+                - ":"
+                - Ref: AWS::AccountId
+                - ":"
+                - Ref: cyberscanapiroot4FE8D352
+                - "/test-invoke-stage/GET/cyberscan/dqm/eventlog/{event_actor}/{event_action}"
+        Metadata:
+          aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/dqm/eventlog/{event_actor}/{event_action}/GET/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.GET..cyberscan.dqm.eventlog.{event_actor}.{event_action}
+  cyberscanapirootcyberscandqmeventlogeventactoreventactionGET66101129:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: GET
+      ResourceId:
+        Ref: cyberscanapirootcyberscandqmeventlogeventactoreventaction08677DB6
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::GetAtt:
+                  - DQMEventLoghandlerCEB8075E
+                  - Arn
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/cyberscan/dqm/eventlog/{event_actor}/{event_action}/GET/Resource
+  cyberscanapirootsrc4B0D3303:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - cyberscanapiroot4FE8D352
+          - RootResourceId
+      PathPart: src
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/src/Resource
+  cyberscanapirootsrcPOSTApiPermissioncyberscanapicyberscanapirootC6689D0BPOSTsrcBECBE4FC:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::ImportValue: cyberscan-scan:ExportsOutputFnGetAttcyberscanscanbroadcastsrcstarteventcyberscanscanbroadcastsrcstarteventfunc05CD18D0ArnD46C0C17
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/"
+            - Ref: cyberscanapirootDeploymentStageprodCC695A56
+            - "/POST/src"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/src/POST/ApiPermission.cyberscanapicyberscanapirootC6689D0B.POST..src
+  cyberscanapirootsrcPOSTApiPermissionTestcyberscanapicyberscanapirootC6689D0BPOSTsrc1AA98060:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::ImportValue: cyberscan-scan:ExportsOutputFnGetAttcyberscanscanbroadcastsrcstarteventcyberscanscanbroadcastsrcstarteventfunc05CD18D0ArnD46C0C17
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ''
+          - - 'arn:'
+            - Ref: AWS::Partition
+            - ":execute-api:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":"
+            - Ref: cyberscanapiroot4FE8D352
+            - "/test-invoke-stage/POST/src"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/src/POST/ApiPermission.Test.cyberscanapicyberscanapirootC6689D0B.POST..src
+  cyberscanapirootsrcPOSTA9C52474:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: POST
+      ResourceId:
+        Ref: cyberscanapirootsrc4B0D3303
+      RestApiId:
+        Ref: cyberscanapiroot4FE8D352
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - ":lambda:path/2015-03-31/functions/"
+              - Fn::ImportValue: cyberscan-scan:ExportsOutputFnGetAttcyberscanscanbroadcastsrcstarteventcyberscanscanbroadcastsrcstarteventfunc05CD18D0ArnD46C0C17
+              - "/invocations"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-root/Default/src/POST/Resource
+  cyberscanapilambdareqlayer6469E811:
+    Type: AWS::Lambda::LayerVersion
+    Properties:
+      Content:
+        S3Bucket:
+          Ref: AssetParametersf72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066S3Bucket5DDC18AB
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersf72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066S3VersionKey097DBD43
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersf72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066S3VersionKey097DBD43
+      CompatibleRuntimes:
+        - python3.7
+      Description: "\n    The Lambda layer that contains additional functions and
+        libraries to be used by the lambdas that are not\n    automatically available.\n
+        \   "
+      LayerName: requirements
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-lambda-reqlayer/Resource
+      aws:asset:path: asset.f72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066.zip
+      aws:asset:property: Content
+  cyberscanapiMgmtOnboardhandlerServiceRole2774CFB7:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboard-handler/ServiceRole/Resource
+  cyberscanapiMgmtOnboardhandlerServiceRoleDefaultPolicyA58B49D7:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: cyberscanapiMgmtOnboardhandlerServiceRoleDefaultPolicyA58B49D7
+      Roles:
+        - Ref: cyberscanapiMgmtOnboardhandlerServiceRole2774CFB7
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboard-handler/ServiceRole/DefaultPolicy/Resource
+  cyberscanapiMgmtOnboardhandlerSecurityGroup7FC84945:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapicyberscanapiMgmtOnboardhandler531284B3
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboard-handler/SecurityGroup/Resource
+  cyberscanapiMgmtOnboardhandler40DD12C7:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../../src/scan/lambdas/mgmt
+      Handler: handler.handle
+      Role:
+        Fn::GetAtt:
+          - cyberscanapiMgmtOnboardhandlerServiceRole2774CFB7
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles onboarding requests to
+        the CyberScan App.  Onboards a user if they don't exist in\n    WCaaS, returns
+        existing user's information, or fails when given invalid headers.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          MGMT_KEYSPACE: mgmt
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - cyberscanapiMgmtOnboardhandlerSecurityGroup7FC84945
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - cyberscanapiMgmtOnboardhandlerServiceRoleDefaultPolicyA58B49D7
+      - cyberscanapiMgmtOnboardhandlerServiceRole2774CFB7
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboard-handler/Resource
+      aws:asset:path: asset.c3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0
+      aws:asset:property: Code
+  cyberscanapiMgmtOnboardStatushandlerServiceRole719F092E:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboardStatus-handler/ServiceRole/Resource
+  cyberscanapiMgmtOnboardStatushandlerServiceRoleDefaultPolicy2F448E3E:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: cyberscanapiMgmtOnboardStatushandlerServiceRoleDefaultPolicy2F448E3E
+      Roles:
+        - Ref: cyberscanapiMgmtOnboardStatushandlerServiceRole719F092E
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboardStatus-handler/ServiceRole/DefaultPolicy/Resource
+  cyberscanapiMgmtOnboardStatushandlerSecurityGroup662132A6:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapicyberscanapiMgmtOnboardStatushandler18DF742D
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboardStatus-handler/SecurityGroup/Resource
+  cyberscanapiMgmtOnboardStatushandler7D61D13E:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersc3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0S3BucketAB796A21
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersc3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0S3VersionKey9654687B
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersc3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0S3VersionKey9654687B
+      Handler: status_handler.handle
+      Role:
+        Fn::GetAtt:
+          - cyberscanapiMgmtOnboardStatushandlerServiceRole719F092E
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles status queries for onboarding
+        requests to the CyberScan App.  Returns the status\n    value for the user
+        record in WCaaS.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - cyberscanapiMgmtOnboardStatushandlerSecurityGroup662132A6
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - cyberscanapiMgmtOnboardStatushandlerServiceRoleDefaultPolicy2F448E3E
+      - cyberscanapiMgmtOnboardStatushandlerServiceRole719F092E
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-MgmtOnboardStatus-handler/Resource
+      aws:asset:path: asset.c3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0
+      aws:asset:property: Code
+  cyberscanapiScanSubmitRole65B0D73A:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - sqs.amazonaws.com
+        Version: '2012-10-17'
+      Description: Role that permits the scan submission handler to write CloudWatch
+        logs, post messages to an SQS queue, and log traces to X-Ray
+      RoleName: CyberScan-Scan-Submission-Handler-Role
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanSubmit-Role/Resource
+  cyberscanapiScanSubmitRoleDefaultPolicy0EEE0EE8:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: sqs:*
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - ec2:DeleteNetworkInterface
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: cyberscanapiScanSubmitRoleDefaultPolicy0EEE0EE8
+      Roles:
+        - Ref: cyberscanapiScanSubmitRole65B0D73A
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanSubmit-Role/DefaultPolicy/Resource
+  cyberscanapiScanSubmithandlerSecurityGroupA1F6BF67:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapicyberscanapiScanSubmithandlerD17856C7
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanSubmit-handler/SecurityGroup/Resource
+  cyberscanapiScanSubmithandler9F83A1FB:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3BucketD9601EB8
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3VersionKey9251117C
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3VersionKey9251117C
+      Handler: submit_scan.handle
+      Role:
+        Fn::GetAtt:
+          - cyberscanapiScanSubmitRole65B0D73A
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that submits scans to the CyberScan
+        to SQS for polling by the collector agents.  Returns the\n    Scan ID for
+        the submitted scan..\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      Timeout: 30
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - cyberscanapiScanSubmithandlerSecurityGroupA1F6BF67
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - cyberscanapiScanSubmitRoleDefaultPolicy0EEE0EE8
+      - cyberscanapiScanSubmitRole65B0D73A
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanSubmit-handler/Resource
+      aws:asset:path: asset.5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855c
+      aws:asset:property: Code
+  cyberscanapiScanPollRoleDFFB281C:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - sqs.amazonaws.com
+        Version: '2012-10-17'
+      Description: Role that permits the scan submission handler to write CloudWatch
+        logs, pop messages from an SQS queue, and log traces to X-Ray
+      RoleName: CyberScan-Scan-Polling-Handler-Role
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanPoll-Role/Resource
+  cyberscanapiScanPollRoleDefaultPolicy64512E56:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - ec2:DeleteNetworkInterface
+            Effect: Allow
+            Resource: "*"
+          - Action: sqs:*
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: cyberscanapiScanPollRoleDefaultPolicy64512E56
+      Roles:
+        - Ref: cyberscanapiScanPollRoleDFFB281C
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanPoll-Role/DefaultPolicy/Resource
+  cyberscanapiScanPollhandlerSecurityGroup51128D3C:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapicyberscanapiScanPollhandler3B4A2323
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanPoll-handler/SecurityGroup/Resource
+  cyberscanapiScanPollhandler3EE57602:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3BucketD9601EB8
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3VersionKey9251117C
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3VersionKey9251117C
+      Handler: poll_scan.handle
+      Role:
+        Fn::GetAtt:
+          - cyberscanapiScanPollRoleDFFB281C
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that returns messages from SQS to the
+        CyberScan Collectors.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+          DEAD_LETTER_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanDeadLetterQueue
+          RETRY_LIMIT: '3'
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      Timeout: 30
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - cyberscanapiScanPollhandlerSecurityGroup51128D3C
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - cyberscanapiScanPollRoleDefaultPolicy64512E56
+      - cyberscanapiScanPollRoleDFFB281C
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanPoll-handler/Resource
+      aws:asset:path: asset.5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855c
+      aws:asset:property: Code
+  cyberscanapiScanRetryhandlerSecurityGroup52B2BE86:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapicyberscanapiScanRetryhandler69E2284C
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanRetry-handler/SecurityGroup/Resource
+  cyberscanapiScanRetryhandler0C5DC1E4:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3BucketD9601EB8
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3VersionKey9251117C
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3VersionKey9251117C
+      Handler: retry_scan.handle
+      Role:
+        Fn::GetAtt:
+          - cyberscanapiScanSubmitRole65B0D73A
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that resubmits a scan request to SQS
+        after some unanticipated failure.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      Timeout: 30
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - cyberscanapiScanRetryhandlerSecurityGroup52B2BE86
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - cyberscanapiScanSubmitRoleDefaultPolicy0EEE0EE8
+      - cyberscanapiScanSubmitRole65B0D73A
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-ScanRetry-handler/Resource
+      aws:asset:path: asset.5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855c
+      aws:asset:property: Code
+  cyberscanapiS3PutRole9612E4F4:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - s3.amazonaws.com
+                - apigateway.amazonaws.com
+        Version: '2012-10-17'
+      Description: Role that puts files to S3 via API Gateway.
+      RoleName: CyberScan-Scan-S3Put-API-RoleCDK
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-S3Put-Role/Resource
+  cyberscanapiS3PutRoleDefaultPolicy8F992BDB:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObjectRetention
+              - s3:GetObjectVersionTagging
+              - s3:PutObjectLegalHold
+              - s3:GetObjectLegalHold
+              - s3:ListMultipartUploadParts
+              - s3:GetObjectVersionTorrent
+              - s3:PutObject
+              - s3:GetObjectAcl
+              - s3:GetObject
+              - s3:GetObjectTorrent
+              - s3:PutObjectRetention
+              - s3:GetObjectVersionAcl
+              - s3:GetObjectTagging
+              - s3:GetObjectVersionForReplication
+              - s3:GetObjectVersion
+            Effect: Allow
+            Resource: arn:aws:s3:::*/*
+          - Action:
+              - s3:CreateAccessPoint
+              - s3:GetAccessPoint
+              - s3:GetLifecycleConfiguration
+              - s3:GetBucketTagging
+              - s3:GetInventoryConfiguration
+              - s3:PutAnalyticsConfiguration
+              - s3:ListBucketVersions
+              - s3:GetBucketLogging
+              - s3:CreateBucket
+              - s3:ListBucket
+              - s3:GetAccelerateConfiguration
+              - s3:GetBucketPolicy
+              - s3:GetObjectAcl
+              - s3:GetEncryptionConfiguration
+              - s3:GetBucketObjectLockConfiguration
+              - s3:GetBucketRequestPayment
+              - s3:GetAccessPointPolicyStatus
+              - s3:GetObjectVersionAcl
+              - s3:GetMetricsConfiguration
+              - s3:HeadBucket
+              - s3:PutBucketVersioning
+              - s3:GetBucketPublicAccessBlock
+              - s3:GetBucketPolicyStatus
+              - s3:ListBucketMultipartUploads
+              - s3:GetBucketWebsite
+              - s3:ListAccessPoints
+              - s3:ListJobs
+              - s3:GetBucketVersioning
+              - s3:PutBucketCORS
+              - s3:GetBucketAcl
+              - s3:GetBucketNotification
+              - s3:GetReplicationConfiguration
+              - s3:GetObject
+              - s3:GetAccountPublicAccessBlock
+              - s3:ListAllMyBuckets
+              - s3:PutBucketRequestPayment
+              - s3:DescribeJob
+              - s3:PutBucketLogging
+              - s3:GetBucketCORS
+              - s3:GetAnalyticsConfiguration
+              - s3:CreateJob
+              - s3:GetBucketLocation
+              - s3:GetAccessPointPolicy
+              - s3:GetObjectVersion
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: cyberscanapiS3PutRoleDefaultPolicy8F992BDB
+      Roles:
+        - Ref: cyberscanapiS3PutRole9612E4F4
+    Metadata:
+      aws:cdk:path: cyberscan-api/cyberscan-api-S3Put-Role/DefaultPolicy/Resource
+  StatusScanIdhandlerServiceRoleA0104940:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusScanId-handler/ServiceRole/Resource
+  StatusScanIdhandlerServiceRoleDefaultPolicy98EFF883:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: StatusScanIdhandlerServiceRoleDefaultPolicy98EFF883
+      Roles:
+        - Ref: StatusScanIdhandlerServiceRoleA0104940
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusScanId-handler/ServiceRole/DefaultPolicy/Resource
+  StatusScanIdhandlerSecurityGroup0C8F52DC:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiStatusScanIdhandlerEF1C826B
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusScanId-handler/SecurityGroup/Resource
+  StatusScanIdhandlerE2A0F523:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3Bucket6BBD0FA2
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+      Handler: status_by_scan_id_handler.handle
+      Role:
+        Fn::GetAtt:
+          - StatusScanIdhandlerServiceRoleA0104940
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          MGMT_KEYSPACE: mgmt
+          STATUS_KEYSPACE: status
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - StatusScanIdhandlerSecurityGroup0C8F52DC
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - StatusScanIdhandlerServiceRoleDefaultPolicy98EFF883
+      - StatusScanIdhandlerServiceRoleA0104940
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusScanId-handler/Resource
+      aws:asset:path: asset.735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec
+      aws:asset:property: Code
+  StatusCompanyNamehandlerServiceRole54AC280E:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusCompanyName-handler/ServiceRole/Resource
+  StatusCompanyNamehandlerServiceRoleDefaultPolicy1F01E266:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: StatusCompanyNamehandlerServiceRoleDefaultPolicy1F01E266
+      Roles:
+        - Ref: StatusCompanyNamehandlerServiceRole54AC280E
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusCompanyName-handler/ServiceRole/DefaultPolicy/Resource
+  StatusCompanyNamehandlerSecurityGroup5C8492F9:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiStatusCompanyNamehandler38D844C9
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusCompanyName-handler/SecurityGroup/Resource
+  StatusCompanyNamehandler23DA8152:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3Bucket6BBD0FA2
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+      Handler: status_by_company_name_handler.handle
+      Role:
+        Fn::GetAtt:
+          - StatusCompanyNamehandlerServiceRole54AC280E
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          MGMT_KEYSPACE: mgmt
+          STATUS_KEYSPACE: status
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - StatusCompanyNamehandlerSecurityGroup5C8492F9
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - StatusCompanyNamehandlerServiceRoleDefaultPolicy1F01E266
+      - StatusCompanyNamehandlerServiceRole54AC280E
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusCompanyName-handler/Resource
+      aws:asset:path: asset.735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec
+      aws:asset:property: Code
+  StatusDateRangehandlerServiceRole2AE27884:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDateRange-handler/ServiceRole/Resource
+  StatusDateRangehandlerServiceRoleDefaultPolicy3DCA7F1C:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: StatusDateRangehandlerServiceRoleDefaultPolicy3DCA7F1C
+      Roles:
+        - Ref: StatusDateRangehandlerServiceRole2AE27884
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDateRange-handler/ServiceRole/DefaultPolicy/Resource
+  StatusDateRangehandlerSecurityGroup6ED0818B:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiStatusDateRangehandlerC1686CED
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDateRange-handler/SecurityGroup/Resource
+  StatusDateRangehandler3412FE17:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3Bucket6BBD0FA2
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+      Handler: status_by_date_range_handler.handle
+      Role:
+        Fn::GetAtt:
+          - StatusDateRangehandlerServiceRole2AE27884
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          MGMT_KEYSPACE: mgmt
+          STATUS_KEYSPACE: status
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - StatusDateRangehandlerSecurityGroup6ED0818B
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - StatusDateRangehandlerServiceRoleDefaultPolicy3DCA7F1C
+      - StatusDateRangehandlerServiceRole2AE27884
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDateRange-handler/Resource
+      aws:asset:path: asset.735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec
+      aws:asset:property: Code
+  StatusStatushandlerServiceRole8151FF1A:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusStatus-handler/ServiceRole/Resource
+  StatusStatushandlerServiceRoleDefaultPolicy4E478E00:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: StatusStatushandlerServiceRoleDefaultPolicy4E478E00
+      Roles:
+        - Ref: StatusStatushandlerServiceRole8151FF1A
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusStatus-handler/ServiceRole/DefaultPolicy/Resource
+  StatusStatushandlerSecurityGroupA4896840:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiStatusStatushandlerE7F6EF66
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusStatus-handler/SecurityGroup/Resource
+  StatusStatushandler1D05E7C9:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3Bucket6BBD0FA2
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+      Handler: status_by_scan_status_handler.handle
+      Role:
+        Fn::GetAtt:
+          - StatusStatushandlerServiceRole8151FF1A
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          MGMT_KEYSPACE: mgmt
+          STATUS_KEYSPACE: status
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - StatusStatushandlerSecurityGroupA4896840
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - StatusStatushandlerServiceRoleDefaultPolicy4E478E00
+      - StatusStatushandlerServiceRole8151FF1A
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusStatus-handler/Resource
+      aws:asset:path: asset.735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec
+      aws:asset:property: Code
+  StatusDomainhandlerServiceRole6E7BEF05:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDomain-handler/ServiceRole/Resource
+  StatusDomainhandlerServiceRoleDefaultPolicyCD4425ED:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: StatusDomainhandlerServiceRoleDefaultPolicyCD4425ED
+      Roles:
+        - Ref: StatusDomainhandlerServiceRole6E7BEF05
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDomain-handler/ServiceRole/DefaultPolicy/Resource
+  StatusDomainhandlerSecurityGroup75079D86:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiStatusDomainhandlerAFB096C5
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDomain-handler/SecurityGroup/Resource
+  StatusDomainhandler53FBB367:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3Bucket6BBD0FA2
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+      Handler: status_by_domain_handler.handle
+      Role:
+        Fn::GetAtt:
+          - StatusDomainhandlerServiceRole6E7BEF05
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          MGMT_KEYSPACE: mgmt
+          STATUS_KEYSPACE: status
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - StatusDomainhandlerSecurityGroup75079D86
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - StatusDomainhandlerServiceRoleDefaultPolicyCD4425ED
+      - StatusDomainhandlerServiceRole6E7BEF05
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDomain-handler/Resource
+      aws:asset:path: asset.735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec
+      aws:asset:property: Code
+  StatusDunshandlerServiceRole6D3D76A9:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDuns-handler/ServiceRole/Resource
+  StatusDunshandlerServiceRoleDefaultPolicyB65141CE:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: StatusDunshandlerServiceRoleDefaultPolicyB65141CE
+      Roles:
+        - Ref: StatusDunshandlerServiceRole6D3D76A9
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDuns-handler/ServiceRole/DefaultPolicy/Resource
+  StatusDunshandlerSecurityGroup13099464:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiStatusDunshandlerDD8603A3
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDuns-handler/SecurityGroup/Resource
+  StatusDunshandler5CBEF4B9:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3Bucket6BBD0FA2
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F
+      Handler: status_by_duns_handler.handle
+      Role:
+        Fn::GetAtt:
+          - StatusDunshandlerServiceRole6D3D76A9
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          MGMT_KEYSPACE: mgmt
+          STATUS_KEYSPACE: status
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - StatusDunshandlerSecurityGroup13099464
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - StatusDunshandlerServiceRoleDefaultPolicyB65141CE
+      - StatusDunshandlerServiceRole6D3D76A9
+    Metadata:
+      aws:cdk:path: cyberscan-api/StatusDuns-handler/Resource
+      aws:asset:path: asset.735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec
+      aws:asset:property: Code
+  AnalyticsCompanyIdhandlerServiceRoleB9ECAB41:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyId-handler/ServiceRole/Resource
+  AnalyticsCompanyIdhandlerServiceRoleDefaultPolicy9EC9BD9A:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: AnalyticsCompanyIdhandlerServiceRoleDefaultPolicy9EC9BD9A
+      Roles:
+        - Ref: AnalyticsCompanyIdhandlerServiceRoleB9ECAB41
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyId-handler/ServiceRole/DefaultPolicy/Resource
+  AnalyticsCompanyIdhandlerSecurityGroup1B133795:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiAnalyticsCompanyIdhandlerFE2726D5
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyId-handler/SecurityGroup/Resource
+  AnalyticsCompanyIdhandlerBCA50E79:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+      Handler: analytics_by_company_id_handler.handle
+      Role:
+        Fn::GetAtt:
+          - AnalyticsCompanyIdhandlerServiceRoleB9ECAB41
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          ANALYTICS_KEYSPACE: analytics
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - AnalyticsCompanyIdhandlerSecurityGroup1B133795
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - AnalyticsCompanyIdhandlerServiceRoleDefaultPolicy9EC9BD9A
+      - AnalyticsCompanyIdhandlerServiceRoleB9ECAB41
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyId-handler/Resource
+      aws:asset:path: asset.b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24
+      aws:asset:property: Code
+  AnalyticsCompanyNamehandlerServiceRole65E7A013:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyName-handler/ServiceRole/Resource
+  AnalyticsCompanyNamehandlerServiceRoleDefaultPolicy235BD892:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: AnalyticsCompanyNamehandlerServiceRoleDefaultPolicy235BD892
+      Roles:
+        - Ref: AnalyticsCompanyNamehandlerServiceRole65E7A013
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyName-handler/ServiceRole/DefaultPolicy/Resource
+  AnalyticsCompanyNamehandlerSecurityGroupE76864C9:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiAnalyticsCompanyNamehandlerB83BBCF2
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyName-handler/SecurityGroup/Resource
+  AnalyticsCompanyNamehandlerCF3121EE:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+      Handler: analytics_by_company_name_handler.handle
+      Role:
+        Fn::GetAtt:
+          - AnalyticsCompanyNamehandlerServiceRole65E7A013
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          ANALYTICS_KEYSPACE: analytics
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - AnalyticsCompanyNamehandlerSecurityGroupE76864C9
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - AnalyticsCompanyNamehandlerServiceRoleDefaultPolicy235BD892
+      - AnalyticsCompanyNamehandlerServiceRole65E7A013
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsCompanyName-handler/Resource
+      aws:asset:path: asset.b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24
+      aws:asset:property: Code
+  AnalyticsDomainhandlerServiceRoleEE7D116A:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDomain-handler/ServiceRole/Resource
+  AnalyticsDomainhandlerServiceRoleDefaultPolicyC310DFD0:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: AnalyticsDomainhandlerServiceRoleDefaultPolicyC310DFD0
+      Roles:
+        - Ref: AnalyticsDomainhandlerServiceRoleEE7D116A
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDomain-handler/ServiceRole/DefaultPolicy/Resource
+  AnalyticsDomainhandlerSecurityGroup8B9C2129:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiAnalyticsDomainhandlerBCCBC915
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDomain-handler/SecurityGroup/Resource
+  AnalyticsDomainhandlerDE866215:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+      Handler: analytics_by_domain_handler.handle
+      Role:
+        Fn::GetAtt:
+          - AnalyticsDomainhandlerServiceRoleEE7D116A
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - AnalyticsDomainhandlerSecurityGroup8B9C2129
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - AnalyticsDomainhandlerServiceRoleDefaultPolicyC310DFD0
+      - AnalyticsDomainhandlerServiceRoleEE7D116A
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDomain-handler/Resource
+      aws:asset:path: asset.b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24
+      aws:asset:property: Code
+  AnalyticsDUNShandlerServiceRoleB2DE7258:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDUNS-handler/ServiceRole/Resource
+  AnalyticsDUNShandlerServiceRoleDefaultPolicy6EC734A5:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: AnalyticsDUNShandlerServiceRoleDefaultPolicy6EC734A5
+      Roles:
+        - Ref: AnalyticsDUNShandlerServiceRoleB2DE7258
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDUNS-handler/ServiceRole/DefaultPolicy/Resource
+  AnalyticsDUNShandlerSecurityGroup08EF879D:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiAnalyticsDUNShandlerFB30176B
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDUNS-handler/SecurityGroup/Resource
+  AnalyticsDUNShandlerAC06B954:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+      Handler: analytics_by_duns_handler.handle
+      Role:
+        Fn::GetAtt:
+          - AnalyticsDUNShandlerServiceRoleB2DE7258
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - AnalyticsDUNShandlerSecurityGroup08EF879D
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - AnalyticsDUNShandlerServiceRoleDefaultPolicy6EC734A5
+      - AnalyticsDUNShandlerServiceRoleB2DE7258
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsDUNS-handler/Resource
+      aws:asset:path: asset.b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24
+      aws:asset:property: Code
+  AnalyticsIPAddresshandlerServiceRoleE15B216F:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsIPAddress-handler/ServiceRole/Resource
+  AnalyticsIPAddresshandlerServiceRoleDefaultPolicy164A0225:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: AnalyticsIPAddresshandlerServiceRoleDefaultPolicy164A0225
+      Roles:
+        - Ref: AnalyticsIPAddresshandlerServiceRoleE15B216F
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsIPAddress-handler/ServiceRole/DefaultPolicy/Resource
+  AnalyticsIPAddresshandlerSecurityGroupB46113BB:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiAnalyticsIPAddresshandler747D0B3F
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsIPAddress-handler/SecurityGroup/Resource
+  AnalyticsIPAddresshandler1F6C2332:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+      Handler: analytics_by_ip_address_handler.handle
+      Role:
+        Fn::GetAtt:
+          - AnalyticsIPAddresshandlerServiceRoleE15B216F
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - AnalyticsIPAddresshandlerSecurityGroupB46113BB
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - AnalyticsIPAddresshandlerServiceRoleDefaultPolicy164A0225
+      - AnalyticsIPAddresshandlerServiceRoleE15B216F
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsIPAddress-handler/Resource
+      aws:asset:path: asset.b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24
+      aws:asset:property: Code
+  AnalyticsPorthandlerServiceRoleB0903595:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsPort-handler/ServiceRole/Resource
+  AnalyticsPorthandlerServiceRoleDefaultPolicyE1E07C60:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: AnalyticsPorthandlerServiceRoleDefaultPolicyE1E07C60
+      Roles:
+        - Ref: AnalyticsPorthandlerServiceRoleB0903595
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsPort-handler/ServiceRole/DefaultPolicy/Resource
+  AnalyticsPorthandlerSecurityGroup1BB9C6C6:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiAnalyticsPorthandler40A04CED
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsPort-handler/SecurityGroup/Resource
+  AnalyticsPorthandler48EBF764:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+      Handler: analytics_by_port_handler.handle
+      Role:
+        Fn::GetAtt:
+          - AnalyticsPorthandlerServiceRoleB0903595
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - AnalyticsPorthandlerSecurityGroup1BB9C6C6
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - AnalyticsPorthandlerServiceRoleDefaultPolicyE1E07C60
+      - AnalyticsPorthandlerServiceRoleB0903595
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsPort-handler/Resource
+      aws:asset:path: asset.b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24
+      aws:asset:property: Code
+  AnalyticsServicehandlerServiceRole587554FC:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsService-handler/ServiceRole/Resource
+  AnalyticsServicehandlerServiceRoleDefaultPolicy4100159E:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: AnalyticsServicehandlerServiceRoleDefaultPolicy4100159E
+      Roles:
+        - Ref: AnalyticsServicehandlerServiceRole587554FC
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsService-handler/ServiceRole/DefaultPolicy/Resource
+  AnalyticsServicehandlerSecurityGroup10F7F237:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiAnalyticsServicehandler1E0F894F
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsService-handler/SecurityGroup/Resource
+  AnalyticsServicehandler2ED4EC89:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4
+      Handler: analytics_by_service_handler.handle
+      Role:
+        Fn::GetAtt:
+          - AnalyticsServicehandlerServiceRole587554FC
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          MGMT_KEYSPACE: mgmt
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          meta: meta
+          STATUS_KEYSPACE: status
+          SCAN_SUBMISSION_QUEUE_URL: https://sqs.us-east-2.amazonaws.com/726764357059/CyberScanCollectorQueue
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - AnalyticsServicehandlerSecurityGroup10F7F237
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - AnalyticsServicehandlerServiceRoleDefaultPolicy4100159E
+      - AnalyticsServicehandlerServiceRole587554FC
+    Metadata:
+      aws:cdk:path: cyberscan-api/AnalyticsService-handler/Resource
+      aws:asset:path: asset.b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24
+      aws:asset:property: Code
+  DQMEventLoghandlerServiceRoleC76BD5EA:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - Fn::Join:
+            - ''
+            - - 'arn:'
+              - Ref: AWS::Partition
+              - ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Metadata:
+      aws:cdk:path: cyberscan-api/DQMEventLog-handler/ServiceRole/Resource
+  DQMEventLoghandlerServiceRoleDefaultPolicy0E7343E9:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Effect: Allow
+            Resource: "*"
+        Version: '2012-10-17'
+      PolicyName: DQMEventLoghandlerServiceRoleDefaultPolicy0E7343E9
+      Roles:
+        - Ref: DQMEventLoghandlerServiceRoleC76BD5EA
+    Metadata:
+      aws:cdk:path: cyberscan-api/DQMEventLog-handler/ServiceRole/DefaultPolicy/Resource
+  DQMEventLoghandlerSecurityGroup03ED1F9B:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatic security group for Lambda Function cyberscanapiDQMEventLoghandlerFB37AA4C
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId: vpc-027bfdc67d3145dfd
+    Metadata:
+      aws:cdk:path: cyberscan-api/DQMEventLog-handler/SecurityGroup/Resource
+  DQMEventLoghandlerCEB8075E:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParametersd234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664cS3BucketB4ABEA3D
+        S3Key:
+          Fn::Join:
+            - ''
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersd234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664cS3VersionKeyA766788D
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParametersd234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664cS3VersionKeyA766788D
+      Handler: dqm_eventlog_handler.handle
+      Role:
+        Fn::GetAtt:
+          - DQMEventLoghandlerServiceRoleC76BD5EA
+          - Arn
+      Runtime: python3.7
+      Description: "\n    The Lambda Function that handles root resources requests
+        to the CyberScan API.  Will just return an HTTP 200\n    response.\n    "
+      Environment:
+        Variables:
+          WCAAS_SERVICE_CLUSTER_ID: '20401'
+          CRUD_API_URL: http://internal-a47c3e4129b4d419ca009329ca5d2d6b-900485676.us-east-2.elb.amazonaws.com:8080
+          WCAAS_SERVICE_TENANT_ID: wcaas-stable-crud
+          DQM_KEYSPACE: dqm
+      Layers:
+        - Ref: cyberscanapilambdareqlayer6469E811
+      TracingConfig:
+        Mode: Active
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - DQMEventLoghandlerSecurityGroup03ED1F9B
+              - GroupId
+        SubnetIds:
+          - subnet-03aa52821f454ce1a
+    DependsOn:
+      - DQMEventLoghandlerServiceRoleDefaultPolicy0E7343E9
+      - DQMEventLoghandlerServiceRoleC76BD5EA
+    Metadata:
+      aws:cdk:path: cyberscan-api/DQMEventLog-handler/Resource
+      aws:asset:path: asset.d234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664c
+      aws:asset:property: Code
+Parameters:
+  AssetParameters70f2cea1585209c425ce9779a19b43aaef7b36583411c592d4145d9db9ba64b3S3Bucket21791533:
+    Type: String
+    Description: S3 bucket for asset "70f2cea1585209c425ce9779a19b43aaef7b36583411c592d4145d9db9ba64b3"
+  AssetParameters70f2cea1585209c425ce9779a19b43aaef7b36583411c592d4145d9db9ba64b3S3VersionKey94B7E755:
+    Type: String
+    Description: S3 key for asset version "70f2cea1585209c425ce9779a19b43aaef7b36583411c592d4145d9db9ba64b3"
+  AssetParameters70f2cea1585209c425ce9779a19b43aaef7b36583411c592d4145d9db9ba64b3ArtifactHash05EB50D5:
+    Type: String
+    Description: Artifact hash for asset "70f2cea1585209c425ce9779a19b43aaef7b36583411c592d4145d9db9ba64b3"
+  AssetParametersf72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066S3Bucket5DDC18AB:
+    Type: String
+    Description: S3 bucket for asset "f72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066"
+  AssetParametersf72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066S3VersionKey097DBD43:
+    Type: String
+    Description: S3 key for asset version "f72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066"
+  AssetParametersf72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066ArtifactHash34E93DA6:
+    Type: String
+    Description: Artifact hash for asset "f72cf69079911c5c9a1b1c4e2b7311fa359c29c0a693ae0d3520a12687182066"
+  AssetParametersc3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0S3BucketAB796A21:
+    Type: String
+    Description: S3 bucket for asset "c3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0"
+  AssetParametersc3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0S3VersionKey9654687B:
+    Type: String
+    Description: S3 key for asset version "c3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0"
+  AssetParametersc3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0ArtifactHashECC81DEB:
+    Type: String
+    Description: Artifact hash for asset "c3f3f0cb6fe7d2e667673c8ffa308f38cf9e20ed7f6ddf5a818fe75e97c05ad0"
+  AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3BucketD9601EB8:
+    Type: String
+    Description: S3 bucket for asset "5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855c"
+  AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cS3VersionKey9251117C:
+    Type: String
+    Description: S3 key for asset version "5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855c"
+  AssetParameters5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855cArtifactHashE4754F3E:
+    Type: String
+    Description: Artifact hash for asset "5260b28d6ec097448cdfbe4168b5984beb8fa6c6da30200f3f43a76bda61855c"
+  AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3Bucket6BBD0FA2:
+    Type: String
+    Description: S3 bucket for asset "735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec"
+  AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecS3VersionKeyA680528F:
+    Type: String
+    Description: S3 key for asset version "735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec"
+  AssetParameters735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ecArtifactHashF9B27F8E:
+    Type: String
+    Description: Artifact hash for asset "735d6f3b482d2d373fa86655ff627f1df1ae1e0a3aab94b941ef767da31252ec"
+  AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3Bucket11CF8C4F:
+    Type: String
+    Description: S3 bucket for asset "b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24"
+  AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24S3VersionKey715866C4:
+    Type: String
+    Description: S3 key for asset version "b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24"
+  AssetParametersb6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24ArtifactHash5D67D827:
+    Type: String
+    Description: Artifact hash for asset "b6f1618c76b96468e3260e23b5fa61388b4285ae86a76cc9da8f3a88f8650d24"
+  AssetParametersd234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664cS3BucketB4ABEA3D:
+    Type: String
+    Description: S3 bucket for asset "d234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664c"
+  AssetParametersd234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664cS3VersionKeyA766788D:
+    Type: String
+    Description: S3 key for asset version "d234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664c"
+  AssetParametersd234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664cArtifactHash6E8EE933:
+    Type: String
+    Description: Artifact hash for asset "d234ea3ebfe85372a89fae97dd90c0e899caeb8dc5883259abbac9415416664c"
+Outputs:
+  cyberscanapirootEndpoint1AF49DDA:
+    Value:
+      Fn::Join:
+        - ''
+        - - https://
+          - Ref: cyberscanapiroot4FE8D352
+          - ".execute-api."
+          - Ref: AWS::Region
+          - "."
+          - Ref: AWS::URLSuffix
+          - "/"
+          - Ref: cyberscanapirootDeploymentStageprodCC695A56
+          - "/"

@@ -1,0 +1,180 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cyberscan-api",
+    "version": "2020-08-21T18:35:12Z"
+  },
+  "paths": {
+    "/cyberscan/scan/schedule": {
+      "get": {
+        "tags": [
+          "Get Scheduled Scans"
+        ],
+        "summary": "Gets all recurring schedules based on the authenticated user.",
+        "operationId": "getScheduledScans",
+        "description": "Gets all recurring schedules based on the authenticated user.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule Scans Found."
+          },
+          "400": {
+            "description": "If the customer account or user id is not formatted properly according to the specified pattern, or if either are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "array",
+                      "description": "Details of the error.",
+                      "items": {
+                        "type": "string",
+                        "description": "Erroneous fields in the request."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the customer account and user id cannot be found in WCaaS, a not found error will be returned.  To fix this, onboard the client authentication information to WCaaS.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "object",
+                      "description": "Details of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cyberscan/scan/schedule/{schedule_id}": {
+      "get": {
+        "tags": [
+          "Get a single Scheduled Scan by ID"
+        ],
+        "summary": "Get a recurring schedule by schedule id.",
+        "operationId": "getScheduledScan",
+        "description": "Get a recurring schedule by schedule id.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "description": "ScheduleId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule Scan Found."
+          },
+          "400": {
+            "description": "If the customer account or user id is not formatted properly according to the specified pattern, or if either are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "array",
+                      "description": "Details of the error.",
+                      "items": {
+                        "type": "string",
+                        "description": "Erroneous fields in the request."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the customer account and user id cannot be found in WCaaS, a not found error will be returned.  To fix this, onboard the client authentication information to WCaaS.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "object",
+                      "description": "Details of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

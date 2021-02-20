@@ -1,0 +1,2 @@
+keyspace: mgmt
+migrations_path: .

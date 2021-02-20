@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cyberscan-api",
+    "version": "2020-08-21T18:35:12Z"
+  },
+  "paths": {
+    "/cyberscan/status/daterange/{date_range}": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Gets the status of a scan.",
+        "operationId": "getScanStatusByDateRange",
+        "description": "Retrieves the status details of scans that have occurred within the specified date range.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          },
+          {
+            "in": "path",
+            "name": "date_range",
+            "description": "Name of the company to query. Valid format is \"YYYY/MM/DD HH:MM:SS - YYYY/MM/DD HH:MM:SS\" where the left datetime occurs before the right datetime.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "([0-9]{4}-[0-9]{2}-[0-9]{2}[ T][0-9]{2}:[0-9]{2}:[0-9]{2}) ?- ?([0-9]{4}-[0-9]{2}-[0-9]{2}[ T][0-9]{2}:[0-9]{2}:[0-9]{2})"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Scan Status by Company Name"
+          },
+          "204": {
+            "description": "If the headers are correct but there is nothing returned from the database, a no content response will be returned."
+          },
+          "400": {
+            "description": "If the customer account, user id, or path variables are not formatted properly according to the specified pattern, or are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "array",
+                      "description": "Details of the error.",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the specified customer account or user id are unauthorized or do not own the requested resource, an unauthorized response will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "string",
+                      "description": "Details of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

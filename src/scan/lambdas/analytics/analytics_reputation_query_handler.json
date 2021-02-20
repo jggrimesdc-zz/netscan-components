@@ -1,0 +1,85 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cyberscan-api",
+    "version": "2020-08-21T18:35:12Z"
+  },
+  "paths": {
+    "/cyberscan/analytics/reputation/query": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Get Reputation",
+        "operationId": "getReputationData",
+        "description": "Returns reputation data from WCAAS",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          },
+          {
+            "in": "query",
+            "name": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Either SSL, IP, or Domain.  The reputation data you want to query by."
+          },
+          {
+            "in": "query",
+            "name": "val",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The exact SSL, IP, or Domain you are querying for."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response."
+          },
+          "204": {
+            "description": "Successful request, no data returned."
+          },
+          "400": {
+            "description": "If the customer account or user id is not formatted properly according to the specified pattern, or if either are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "string",
+                      "description": "Details of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1015 @@
+{
+  "reputation": {
+    "feodotracker": {
+      "url": "https://feodotracker.abuse.ch/downloads/ipblocklist.csv",
+      "file_type": ".csv",
+      "is_zip": false,
+      "partition_cols": [
+        "date"
+      ],
+      "date_col": "Firstseen",
+      "last_seen_date_col": "LastOnline",
+      "transformations": [
+        "IngestFiles",
+        "ReadCSVComments",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "urlhaus": {
+      "url": "https://urlhaus.abuse.ch/downloads/csv/",
+      "file_type": ".txt",
+      "is_zip": true,
+      "partition_cols": [
+        "date"
+      ],
+      "date_col": "dateadded",
+      "last_seen_date_col": "",
+      "transformations": [
+        "IngestFiles",
+        "ReadCSVComments",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "sslblacklist": {
+      "url": "https://sslbl.abuse.ch/blacklist/sslblacklist.csv",
+      "file_type": ".csv",
+      "is_zip": false,
+      "partition_cols": [
+        "date"
+      ],
+      "date_col": "Listingdate",
+      "last_seen_date_col": "",
+      "transformations": [
+        "IngestFiles",
+        "ReadCSVComments",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "sslipblacklist": {
+      "url": "https://sslbl.abuse.ch/blacklist/sslipblacklist.csv",
+      "file_type": ".csv",
+      "is_zip": false,
+      "partition_cols": [
+        "date"
+      ],
+      "date_col": "Firstseen",
+      "last_seen_date_col": "",
+      "transformations": [
+        "IngestFiles",
+        "ReadCSVComments",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "phishtank": {
+      "url": "http://data.phishtank.com/data/online-valid.csv",
+      "file_type": ".csv",
+      "is_zip": false,
+      "partition_cols": [
+        "date"
+      ],
+      "date_col": "submission_time",
+      "last_seen_date_col": "verification_time",
+      "transformations": [
+        "IngestFiles",
+        "ReadCSV",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "cisco_ip": {
+      "url": "https://www.snort.org/downloads/ip-block-list",
+      "file_type": ".txt",
+      "is_zip": false,
+      "partition_cols": [
+        "date"
+      ],
+      "single_col": [
+        "ip"
+      ],
+      "transformations": [
+        "IngestFiles",
+        "ReadSingleColTxt",
+        "AddDateColumn",
+        "DataframeToParquet"
+      ]
+    },
+    "openphish": {
+      "url": "https://openphish.com/feed.txt",
+      "file_type": ".txt",
+      "is_zip": false,
+      "partition_cols": [
+        "date"
+      ],
+      "single_col": [
+        "url"
+      ],
+      "transformations": [
+        "IngestFiles",
+        "ReadSingleColTxt",
+        "AddDateColumn",
+        "DataframeToParquet"
+      ]
+    },
+    "alienvault": {
+      "url": "http://reputation.alienvault.com/reputation.generic",
+      "file_type": ".csv",
+      "is_zip": false,
+      "partition_cols": [
+        "country"
+      ],
+      "columns": [
+        "ip",
+        "type",
+        "country",
+        "city",
+        "lat",
+        "long"
+      ],
+      "transformations": [
+        "IngestFiles",
+        "ReadAlienCSV",
+        "DataframeToParquet"
+      ]
+    }
+  },
+  "vulnerability": {
+    "CVE-Modified": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-modified.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-Recent": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-recent.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2020": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2020.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2019": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2019.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2018": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2018.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2017": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2017.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2016": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2016.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2015": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2015.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2014": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2014.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2013": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2013.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2012": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2012.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2011": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2011.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2010": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2010.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2009": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2009.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2008": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2008.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2007": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2007.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2006": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2006.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2005": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2005.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2004": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2004.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2003": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2003.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    },
+    "CVE-2002": {
+      "url": "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-2002.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "date",
+        "cve_id"
+      ],
+      "date_col": "publishedDate",
+      "last_seen_date_col": "",
+      "json_key": "CVE_Items",
+      "id_col_raw": "cve.CVE_data_meta.ID",
+      "id_col_rev": "cve_id",
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DateColumnUpdates",
+        "DataframeToParquet"
+      ]
+    }
+  },
+  "breach": {
+    "000webhost.fixed.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "7k7k.com.fixed.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "abandonia.fixed.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "aimjunkies.fixed.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "badoo_normalized.fixed.jl": {
+      "email_col": "user",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "cdprojektred.fixed.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "collections.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "dropbox.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "edmodo.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "exploit.in.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "grinderscape.org.txt.jl": {
+      "email_col": "user",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "lastfm.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "linkedin.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "myspace.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "tumblr.jl": {
+      "email_col": "user",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "twitter.jl": {
+      "email_col": "name",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "webhostingtalk.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "xhamster.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "xsplit.fixed.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "yahoovoice.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    },
+    "zoosk.fixed.fixed.jl": {
+      "email_col": "email",
+      "file_type": "jl",
+      "partition_cols": [
+        "part"
+      ],
+      "transformations": [
+        "ReadBreachJL",
+        "BreachPrep",
+        "EmailUpdate",
+        "DataframeToParquetBreach"
+      ]
+    }
+  },
+  "iihd": {
+    "cybergreen": {
+      "url": "http://bits.cybergreen.net/prod/stats/latest/count.csv",
+      "file_type": ".csv",
+      "is_zip": false,
+      "partition_cols": [
+        "country"
+      ],
+      "date_col": [
+        "date"
+      ],
+      "columns": [
+        "date",
+        "risk",
+        "country",
+        "asn",
+        "count",
+        "count_amplified"
+      ],
+      "dtypes": {
+        "date": "str",
+        "risk": "int8",
+        "country": "category",
+        "asn": "category",
+        "count": "float32",
+        "count_amplified": "float64"
+      },
+      "transformations": [
+        "IngestFiles",
+        "ReadCSVColumns",
+        "DataframeToParquet"
+      ]
+    },
+    "cybergreen_risk": {
+      "url": "https://stats.cybergreen.net/api/v1/risk",
+      "file_type": ".json",
+      "is_zip": false,
+      "json_key": "results",
+      "partition_cols": [
+        "taxonomy"
+      ],
+      "transformations": [
+        "IngestFilesAPI",
+        "ReadJSON",
+        "DataframeToParquetNoSuccess"
+      ]
+    },
+    "cybergreen_daily": {
+      "url": "https://stats.cybergreen.net/api/v1/count",
+      "url_addition": "?limit={}&page={}&start={}%2000%3A00%3A00&end={}%2000%3A00%3A00&format=json",
+      "file_type": ".json",
+      "json_key": "results",
+      "page_key": "total",
+      "partition_cols": [
+        "date",
+        "country"
+      ],
+      "date_col": [
+        "date"
+      ],
+      "columns": [
+        "date",
+        "risk",
+        "country",
+        "asn",
+        "count",
+        "count_amplified"
+      ],
+      "dtypes": {
+        "date": "str",
+        "risk": "int8",
+        "country": "category",
+        "asn": "category",
+        "count": "float32",
+        "count_amplified": "float64"
+      },
+      "transformations": [
+        "IngestFilesAPIPaginated",
+        "ReadJSON",
+        "DataframeToParquet"
+      ]
+    },
+    "cybergreen_asn": {
+      "url": "https://stats.cybergreen.net/api/v1/asn",
+      "file_type": ".json",
+      "json_key": "results",
+      "partition_cols": [
+        "country"
+      ],
+      "transformations": [
+        "IngestFilesAPI",
+        "ReadJSON",
+        "DataframeToParquetNoSuccess"
+      ]
+    }
+  },
+  "tools": {
+    "blackarch": {
+      "partition_cols": [
+        "date"
+      ],
+      "url": "https://github.com/BlackArch/blackarch.git",
+      "transformations": [
+        "IngestBlackarch",
+        "DataframeToParquet"
+      ]
+    },
+    "kali": {
+      "file_type": "html",
+      "partition_cols": [
+        "name"
+      ],
+      "url": "https://tools.kali.org/tools-listing",
+      "transformations": [
+        "IngestKali",
+        "ReadToolHTML",
+        "DataframeToParquet"
+      ]
+    }
+  },
+  "threat_actor": {
+    "enterprise_attack": {
+      "url": "https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json",
+      "file_type": ".json",
+      "is_zip": false,
+      "partition_cols": [
+        "type"
+      ],
+      "json_key": "objects",
+      "transformations": [
+        "IngestFilesAPI",
+        "ReadJSON",
+        "DataframeToParquet"
+      ]
+    },
+    "mobile_attack": {
+      "url": "https://raw.githubusercontent.com/mitre/cti/master/mobile-attack/mobile-attack.json",
+      "file_type": ".json",
+      "is_zip": false,
+      "partition_cols": [
+        "type"
+      ],
+      "json_key": "objects",
+      "transformations": [
+        "IngestFilesAPI",
+        "ReadJSON",
+        "DataframeToParquet"
+      ]
+    },
+    "pre_attack": {
+      "url": "https://raw.githubusercontent.com/mitre/cti/master/pre-attack/pre-attack.json",
+      "file_type": ".json",
+      "is_zip": false,
+      "partition_cols": [
+        "type"
+      ],
+      "json_key": "objects",
+      "transformations": [
+        "IngestFilesAPI",
+        "ReadJSON",
+        "DataframeToParquet"
+      ]
+    }
+  },
+  "vcdb": {
+    "veris": {
+      "url": "https://raw.githubusercontent.com/vz-risk/VCDB/master/data/joined/vcdb.json.zip",
+      "file_type": ".json",
+      "is_zip": true,
+      "partition_cols": [
+        "victim_country"
+      ],
+      "transformations": [
+        "IngestFiles",
+        "ReadJSONNested",
+        "DataframeToParquet"
+      ]
+    }
+  }
+}

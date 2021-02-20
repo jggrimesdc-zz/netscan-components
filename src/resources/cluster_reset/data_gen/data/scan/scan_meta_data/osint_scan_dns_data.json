@@ -1,0 +1,29 @@
+{
+  "columnDefinitions": [
+    "SCAN_ID text",
+    "USER_ID timestamp",
+    "TIMESTAMP timestamp",
+    "DNS_RECORD_NAME text",
+    "ALOOKUP_NAME text",
+    "ALOOKUP_STATUS text",
+    "ALOOKUP_TIMESTAMP timestamp",
+    "ALOOKUP_DATA text",
+    "SPF_NAME text",
+    "SPF_STATUS text",
+    "SPF_TIMESTAMP timestamp",
+    "SPF_DATA text",
+    "DMARC_ALTERED_NAME text",
+    "DMARC_NAME text",
+    "DMARC_STATUS text",
+    "DMARC_TIMESTAMP timestamp",
+    "DMARC_DATA text",
+    "AXFR_ALLOWED text"
+  ],
+  "name": "osint_scan_dns_data",
+  "primaryKey": [
+    "(SCAN_ID, USER_ID)",
+    "TIMESTAMP",
+    "DNS_RECORD_NAME"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC, DNS_RECORD_NAME DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

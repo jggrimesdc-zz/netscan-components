@@ -1,0 +1,21 @@
+{
+  "columnDefinitions": [
+    "SCAN_ID text",
+    "SCAN_USER_ID text",
+    "TIMESTAMP timestamp",
+    "FACTOR text",
+    "SCORE float",
+    "IMPACT int",
+    "NetScan",
+    "CAT text",
+    "DESCRIPTION text",
+    "S3_RAW_DUMP_URL text"
+  ],
+  "name": "score_part_spark_job_ab",
+  "primaryKey": [
+    "(SCAN_ID, SCAN_USER_ID)",
+    "FACTOR",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (FACTOR DESC, TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

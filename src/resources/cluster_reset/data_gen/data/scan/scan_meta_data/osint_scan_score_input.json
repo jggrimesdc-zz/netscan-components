@@ -1,0 +1,26 @@
+{
+  "columnDefinitions": [
+    "SCAN_ID text",
+    "USER_ID timestamp",
+    "TIMESTAMP timestamp",
+    "SPF_TOTAL int",
+    "SPF_SUBSET int",
+    "DMARC_TOTAL int",
+    "DMARC_SUBSET int",
+    "BROWSERV_TOTAL int",
+    "BROWSERV_SUBSET int",
+    "HTTPS_TOTAL int",
+    "HTTPS_SUBSET int",
+    "OP_TOTAL int",
+    "OP_SUBSET int",
+    "WAH_TOTAL int",
+    "WAH_SUBSET int",
+    "S3_RAW_DUMP_URL text"
+  ],
+  "name": "osint_scan_score_input",
+  "primaryKey": [
+    "(SCAN_ID, USER_ID)",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

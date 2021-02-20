@@ -1,0 +1,2 @@
+keyspace: meta
+migrations_path: .

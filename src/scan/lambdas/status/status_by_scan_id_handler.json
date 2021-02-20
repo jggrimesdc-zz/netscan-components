@@ -1,0 +1,103 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cyberscan-api",
+    "version": "2020-08-21T18:35:12Z"
+  },
+  "paths": {
+    "/cyberscan/status/scanid/{scan_id}": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Gets the status of a scan",
+        "operationId": "getScanStatus",
+        "description": "Retrieves the status of a scan based on the scan_id value provided in the request path.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          },
+          {
+            "in": "path",
+            "name": "scan_id",
+            "description": "ID of the scan to query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Scan Status Object"
+          },
+          "204": {
+            "description": "If the headers are correct but there is nothing returned from the database, a no content response will be returned."
+          },
+          "400": {
+            "description": "If the customer account, user id, or path variables are not formatted properly according to the specified pattern, or are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "array",
+                      "description": "Details of the error.",
+                      "items": {
+                        "type": "string",
+                        "description": "Erroneous fields in the request."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the specified customer account or user id are unauthorized or do not own the requested resource, an unauthorized response will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "string",
+                      "description": "Details of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

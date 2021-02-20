@@ -1,0 +1,42 @@
+{
+  "columnDefinitions": [
+    "SCAN_ID text",
+    "COMPANY_NAME text",
+    "TIMESTAMP timestamp",
+    "USER_ID text",
+    "DUNS text",
+    "RISK_SCORE text",
+    "RISK_IMPACT_HIGH text",
+    "RISK_IMPACT_MED text",
+    "RISK_IMPACT_LOW text",
+    "SGNLS_TECSEC_DESC text",
+    "SGNLS_TECSEC_HIGH text",
+    "SGNLS_TECSEC_MED text",
+    "SGNLS_TECSEC_LOW text",
+    "SGNLS_TECSEC_WGHT text",
+    "SGNLS_ESTMNTNDOC_DESC text",
+    "SGNLS_ESTMNTNDOC_HIGH text",
+    "SGNLS_ESTMNTNDOC_MED text",
+    "SGNLS_ESTMNTNDOC_LOW text",
+    "SGNLS_ESTMNTNDOC_WGHT text",
+    "SGNLS_CONF_DESC text",
+    "SGNLS_CONF_HIGH text",
+    "SGNLS_CONF_MED text",
+    "SGNLS_CONF_LOW text",
+    "SGNLS_CONF_WGHT text",
+    "SGNLS_POA_DESC text",
+    "SGNLS_POA_HIGH text",
+    "SGNLS_POA_MED text",
+    "SGNLS_POA_LOW text",
+    "SGNLS_POA_WGHT text",
+    "S3_RAW_DUMP_URL text"
+  ],
+  "name": "score_report_spark_job_ab",
+  "primaryKey": [
+    "(SCAN_ID, COMPANY_NAME)",
+    "TIMESTAMP",
+    "USER_ID",
+    "DUNS"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC, USER_ID DESC, DUNS DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

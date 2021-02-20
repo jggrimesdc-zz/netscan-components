@@ -1,0 +1,11 @@
+[profile eks-dev-role]
+role_arn=arn:aws:iam::726764357059:role/eks-developer
+source_profile = pipeline-user
+region = us-east-2
+role_session_name = cyberscan-terraform
+
+[profile eks-qa-role]
+role_arn=arn:aws:iam::500841576861:role/eks-developer
+source_profile = pipeline-user
+region = us-east-2
+role_session_name = cyberscan-terraform

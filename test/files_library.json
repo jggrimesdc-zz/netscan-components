@@ -1,0 +1,117 @@
+{
+  "files": {
+    "meta.json": {
+      "acceptable_file": {
+        "name": "suntrust",
+        "duns": "1901503",
+        "domains": [
+          "suntrust.com"
+        ],
+        "scan_id": "5483f0ad-993b-45b8-a312-9adbcd3ccf00",
+        "start_time": "2020-08-18T14:36:25.417474414Z",
+        "end_time": "2020-08-18T15:44:42.541119912Z",
+        "run_time": 4097123645580
+      },
+      "unacceptable_file": {
+      }
+    },
+    "report.json": {
+      "acceptable_file": {
+        "date": "2020-06-01T00:00:00Z",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "name": "TEST",
+        "cyber_risk": {
+          "high_impact_weight": "0.8",
+          "score": "000.0",
+          "medium": "000.0",
+          "low": "000.0",
+          "high": "740.0",
+          "controls": [
+            {
+              "weight": "0.25",
+              "name": "configuration",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting on the ability for an organization to actively manage and track the secure configuration of their technology assets in a security lifecycle context. Positive control of configurations that impact security are essential to the ongoing security properties of a mature, security focused organization",
+              "high_impact_control_score": "000.0"
+            },
+            {
+              "weight": "0.25",
+              "name": "establish_maintain_documentation",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting of technical security performance indicators that impact the industry accepted best known techniques, tactics and specific strategies used to safeguard information and systems from unauthorized access, unauthorized modification, unauthorized disclosure and/or unauthorized destruction",
+              "high_impact_control_score": "000.0"
+            },
+            {
+              "weight": "0.25",
+              "name": "process_or_activity",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting on process performance or activity performance indicators which have an overall impact on the ability of an organization to successfully manage business expectations while balancing data security and information security expectation",
+              "high_impact_control_score": "000.0"
+            },
+            {
+              "weight": "0.25",
+              "name": "technical_security",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting of data information management performance indicators that appeal to and focus on the good stewardship, repeatable collection, safe disclosure, best practice protection, responsible use or retention of relevant data and information",
+              "high_impact_control_score": "000.0"
+            }
+          ],
+          "low_impact_weight": "0.0",
+          "medium_impact_weight": "0.2"
+        }
+      },
+      "unacceptable_file": {
+        "date": "2020-06-01T00:00:00Z",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "name": "TEST",
+        "cyber_risk": {
+          "high_impact_weight": "0.8",
+          "score": "000.0",
+          "medium": "000.0",
+          "low": "000.0",
+          "high": "740.0",
+          "controls": [
+            {
+              "weight": "0.25",
+              "name": "configuration",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting on the ability for an organization to actively manage and track the secure configuration of their technology assets in a security lifecycle context. Positive control of configurations that impact security are essential to the ongoing security properties of a mature, security focused organization",
+              "high_impact_control_score": "000.0"
+            },
+            {
+              "weight": "0.25",
+              "name": "establish_maintain_documentation",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting of technical security performance indicators that impact the industry accepted best known techniques, tactics and specific strategies used to safeguard information and systems from unauthorized access, unauthorized modification, unauthorized disclosure and/or unauthorized destruction",
+              "high_impact_control_score": "000.0"
+            },
+            {
+              "weight": "0.25",
+              "name": "process_or_activity",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting on process performance or activity performance indicators which have an overall impact on the ability of an organization to successfully manage business expectations while balancing data security and information security expectation",
+              "high_impact_control_score": "000.0"
+            },
+            {
+              "weight": "0.25",
+              "name": "technical_security",
+              "low_impact_control_score": "n/a",
+              "medium_impact_control_score": "n/a",
+              "description": "Measurement and reporting of data information management performance indicators that appeal to and focus on the good stewardship, repeatable collection, safe disclosure, best practice protection, responsible use or retention of relevant data and information",
+              "high_impact_control_score": "000.0"
+            }
+          ],
+          "low_impact_weight": "0.0",
+          "medium_impact_weight": "0.2"
+        }
+      }
+    }
+  }
+}

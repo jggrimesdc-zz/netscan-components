@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ES2019"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES2019",
+    //    "noImplicitAny": true,
+    "removeComments": true
+  },
+  "include": [
+    "cicd/*",
+    "cicd/**/*"
+  ]
+}

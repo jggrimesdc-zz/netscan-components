@@ -1,0 +1,24 @@
+{
+  "name": "scan-components-cicd",
+  "version": "1.0.0",
+  "description": "CICD Tooling for Scan Components",
+  "repository": "https://gitlab.com/netscan/teams/wcaas/scan-components",
+  "license": "ISC",
+  "main": "cicd/docgen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@kubernetes/client-node": "^0.12.2",
+    "aws-sdk": "^2.738.0",
+    "aws-sigv4-auth-cassandra-plugin": "^1.0.2",
+    "axios": "^0.21.0",
+    "cassandra-driver": "^4.6.0",
+    "glob": "^7.1.6",
+    "lodash.isequal": "^4.5.0",
+    "oas-validator": "^4.0.8",
+    "pg": "^8.4.2",
+    "stream-buffers": "^3.0.2",
+    "typescript": "^4.0.5"
+  }
+}

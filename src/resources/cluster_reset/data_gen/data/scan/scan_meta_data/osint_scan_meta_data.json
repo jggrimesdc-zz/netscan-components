@@ -1,0 +1,20 @@
+{
+  "columnDefinitions": [
+    "SCAN_ID text",
+    "USER_ID timestamp",
+    "START_TIME timestamp",
+    "END_TIME timestamp",
+    "COMPANY_NAME text",
+    "DUNS text",
+    "DOMAINS text",
+    "RUN_TIME text",
+    "S3_RAW_DUMP_URL text"
+  ],
+  "name": "osint_meta_data",
+  "primaryKey": [
+    "(SCAN_ID, USER_ID)",
+    "START_TIME",
+    "END_TIME"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (START_TIME DESC, END_TIME DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

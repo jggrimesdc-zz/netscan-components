@@ -1,0 +1,19 @@
+{
+  "columnDefinitions": [
+    "DOMAIN_NAME text",
+    "TIMESTAMP timestamp",
+    "USER_ID text",
+    "COMPANY_NAME text",
+    "SCAN_ID int",
+    "SCAN_STATUS text",
+    "DUNS int"
+  ],
+  "name": "status_by_domain",
+  "primaryKey": [
+    "DOMAIN_NAME",
+    "TIMESTAMP",
+    "USER_ID",
+    "SCAN_ID"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC, USER_ID DESC, SCAN_ID DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

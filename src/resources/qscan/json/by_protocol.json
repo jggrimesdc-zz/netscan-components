@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "by_protocol",
+  "properties": {
+    "company_name": {
+      "type": "string"
+    },
+    "domains": {
+      "type": "string"
+    },
+    "ports": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "number"
+      }
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "protocol",
+    "timestamp"
+  ]
+}

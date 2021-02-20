@@ -1,0 +1,13 @@
+{
+  "wcaas": {
+    "region": "us-east-2",
+    "datacenter": "datacenter1"
+  },
+  "postgres": {
+    "rdsSecretKey": "rds/wcaasmgmt",
+    "schemas": [
+      "enrichment",
+      "threat_actor"
+    ]
+  }
+}

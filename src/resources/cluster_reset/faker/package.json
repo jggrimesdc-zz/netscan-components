@@ -1,0 +1,19 @@
+{
+  "name": "qomplex-faker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "faker.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "csv-writer": "^1.6.0",
+    "dateformat": "^3.0.3",
+    "faker": "^4.1.0",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

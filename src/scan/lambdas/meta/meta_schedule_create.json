@@ -1,0 +1,136 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cyberscan-api",
+    "version": "2020-08-21T18:35:12Z"
+  },
+  "paths": {
+    "/cyberscan/scan/schedule": {
+      "post": {
+        "tags": [
+          "Create Scheduled Scan"
+        ],
+        "summary": "Creates a recurring schedule for submitting scans.",
+        "operationId": "submitScheduledScan",
+        "description": "Creates a recurring schedule for submitting scans.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-netscan-customeraccountid",
+            "description": "netscan Account ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[0-9]{3}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-netscan-userid",
+            "description": "netscan User ID for the Customer.  Provisioned by netscan.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-v0-9]{20}"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "domains",
+                  "company_name",
+                  "duns",
+                  "recurrence"
+                ],
+                "properties": {
+                  "domains": {
+                    "type": "array",
+                    "description": "Array of domains to scan.",
+                    "items": {
+                      "type": "string",
+                      "format": "(//|^)([A-Za-z0-9-]{0,61}){1,3}[A-Za-z]{2,6}"
+                    }
+                  },
+                  "company_name": {
+                    "description": "Name of the company to scan.",
+                    "type": "string"
+                  },
+                  "duns": {
+                    "description": "DUNS",
+                    "type": "string"
+                  },
+                  "recurrence": {
+                    "description": "Schedule recurrence.",
+                    "type": "string",
+                    "enum": [
+                      "daily",
+                      "weekly",
+                      "monthly",
+                      "quarterly"
+                    ]
+                  },
+                  "next_scheduled_run": {
+                    "description": "(Optional) Start date as an ISO-8601 formatted string.",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The scheduled scan has been successfully submitted."
+          },
+          "400": {
+            "description": "If the customer account or user id is not formatted properly according to the specified pattern, or if either are missing, a bad request will be returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "array",
+                      "description": "Details of the error.",
+                      "items": {
+                        "type": "string",
+                        "description": "Erroneous fields in the request."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the customer account and user id cannot be found in WCaaS, a not found error will be returned.  To fix this, onboard the client authentication information to WCaaS.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Error message."
+                    },
+                    "errorDetails": {
+                      "type": "object",
+                      "description": "Details of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

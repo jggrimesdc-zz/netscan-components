@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "by_company_name",
+  "properties": {
+    "axfr": {
+      "type": "boolean"
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "dmarc": {
+      "type": "boolean"
+    },
+    "ip_addresses": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "ports": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "number"
+      }
+    },
+    "protocols": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "services": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "spf": {
+      "type": "boolean"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "company_name",
+    "timestamp"
+  ]
+}

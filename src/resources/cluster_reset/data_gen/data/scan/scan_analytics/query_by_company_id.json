@@ -1,0 +1,17 @@
+{
+  "columnDefinitions": [
+    "COMPANY_ID text",
+    "TIMESTAMP timestamp",
+    "USER_ID text",
+    "DUNS int",
+    "DOMAINS text",
+    "COMPANY_INFO text",
+    "IP_ADDRESS text"
+  ],
+  "name": "by_company_id",
+  "primaryKey": [
+    "COMPANY_ID",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

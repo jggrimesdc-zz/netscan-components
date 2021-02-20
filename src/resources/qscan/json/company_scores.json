@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "company_scores",
+  "properties": {
+    "ca": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "certificate_data": {
+      "type": "string"
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "cpe": {
+      "type": "string"
+    },
+    "dmarc": {
+      "type": "string"
+    },
+    "high_impact_weight": {
+      "type": "string"
+    },
+    "low_impact_weight": {
+      "type": "string"
+    },
+    "medium_impact_weight": {
+      "type": "string"
+    },
+    "number_ip_addr": {
+      "type": "number"
+    },
+    "open_ports_non_standard": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_ports_standard": {
+      "type": "array",
+      "additionalItems": true,
+      "uniqueItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "spf": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "total_core": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "company_name",
+    "timestamp"
+  ]
+}

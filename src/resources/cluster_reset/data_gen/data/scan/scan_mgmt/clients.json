@@ -1,0 +1,14 @@
+{
+  "columnDefinitions": [
+    "CUSTOMER_ACCOUNT_ID text",
+    "USER_ID text",
+    "SCAN_USER_ID text",
+    "ONBOARD_TIME timestamp"
+  ],
+  "name": "clients",
+  "primaryKey": [
+    "(CUSTOMER_ACCOUNT_ID, USER_ID, SCAN_USER_ID)",
+    "ONBOARD_TIME"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (ONBOARD_TIME DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

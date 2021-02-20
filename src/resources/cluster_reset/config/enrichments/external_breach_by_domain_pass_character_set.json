@@ -1,0 +1,31 @@
+{
+  "columnDefinitions": [
+    "ID uuid",
+    "DOMAIN text",
+    "EMAIL text",
+    "USER text",
+    "USER_ID text",
+    "NAME text",
+    "SOURCE text",
+    "IP text",
+    "PASS text",
+    "PASS_LENGTH int",
+    "PASS_CHARACTER_SET text",
+    "PASS_COMPLEXITY_DIGIT int",
+    "PASS_COMPLEXITY_LOWER int",
+    "PASS_COMPLEXITY_UPPER int",
+    "PASS_COMPLEXITY_SPECIAL int",
+    "PASS_SIMPLE_MASK text",
+    "PASS_ADVANCED_MASK text",
+    "PASS_HASH text",
+    "PASS_SALT text",
+    "SOURCE_OF_BREACH text",
+    "TIMESTAMP timestamp"
+  ],
+  "name": "external_breach_by_domain_pass_character_set",
+  "primaryKey": [
+    "(PASS_CHARACTER_SET, DOMAIN)",
+    "ID"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (ID DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}

@@ -1,0 +1,25 @@
+{
+  "columnDefinitions": [
+    "DOMAIN_NAME text",
+    "TIMESTAMP timestamp",
+    "USER_ID text",
+    "DUNS int",
+    "EMAIL_ADDRESS text",
+    "COMPANY_INFO text",
+    "SPF text",
+    "DKIM text",
+    "DMARC text",
+    "IP_ADDRESS text",
+    "OPEN_PORTS text",
+    "MALWARE_SERVERS text",
+    "FILE_SHARE_SERVERS text",
+    "INSECURE_SYSTEMS text",
+    "POTENTIALLY_EXPLOITED_SYSTEMS text"
+  ],
+  "name": "by_domain",
+  "primaryKey": [
+    "DOMAIN_NAME",
+    "TIMESTAMP"
+  ],
+  "tableOptions": "CLUSTERING ORDER BY (TIMESTAMP DESC) AND compaction = { 'class' : 'LeveledCompactionStrategy' }"
+}
